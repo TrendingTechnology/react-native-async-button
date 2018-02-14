@@ -141,31 +141,31 @@ function renderComponent(union: Component): React.ReactElement<any> | undefined 
  * ```
  * <View>
  *   <AsyncButton
- *     SendComponent={<Text>Send</Text>}
+ *     IdleComponent={<Text>Send</Text>}
  *     onPress={success}
  *   />
  *   <AsyncButton
- *     SendComponent={<Text>Send + Reset</Text>}
- *     sentTimeout={1000}
- *     SentComponent={SentComponent}
+ *     IdleComponent={<Text>Send + Reset</Text>}
+ *     successTimeout={1000}
+ *     SuccessComponent={SuccessComponent}
  *     onPress={success}
  *   />
  *   <AsyncButton
- *     SendComponent={<Text>Send + No Reset</Text>}
- *     sentTimeout={Infinity}
- *     SentComponent={SentComponent}
+ *     IdleComponent={<Text>Send + No Reset</Text>}
+ *     successTimeout={Infinity}
+ *     SuccessComponent={SuccessComponent}
  *     onPress={success}
  *   />
  *   <AsyncButton
- *     SendComponent={<Text>Error + Reset</Text>}
- *     errorTimeout={1000}
- *     ErrorComponent={ErrorComponent}
+ *     IdleComponent={<Text>Error + Reset</Text>}
+ *     failureTimeout={1000}
+ *     FailureComponent={FailureComponent}
  *     onPress={error}
  *   />
  *   <AsyncButton
- *     SendComponent={<Text>Error + No Reset</Text>}
- *     errorTimeout={Infinity}
- *     ErrorComponent={ErrorComponent}
+ *     IdleComponent={<Text>Error + No Reset</Text>}
+ *     failureTimeout={Infinity}
+ *     FailureComponent={FailureComponent}
  *     onPress={error}
  *   />
  * </View>
