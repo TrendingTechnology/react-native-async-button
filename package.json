@@ -1,6 +1,6 @@
 {
   "name": "@ef-carbon/react-native-async-button",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "A button that can update the rendering state dependent on an asynchronous operation",
   "main": "dist/lib/index.cjs.js",
   "module": "dist/lib/index.js",
