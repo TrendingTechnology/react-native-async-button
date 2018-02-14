@@ -42,6 +42,17 @@ version: 2
     command: |
       echo "PATH=${PATH}:$(yarn global bin)" >> "${BASH_ENV}"
 
+.setup-git: &setup_git
+  run:
+    name: Setting git Environment
+    command: |
+      echo "GH_USER=$(curl -H "Authorization: bearer ${GH_TOKEN}" -d '{ "query": "query { viewer { login } }" }' https://api.github.com/graphql | jq -r .data.viewer.login)" >> "${BASH_ENV}"
+      source "${BASH_ENV}"
+      echo "GH_EMAIL=${GH_USER}@ef.com" >> "${BASH_ENV}"
+      source "${BASH_ENV}"
+      git config user.name "${GH_USER}"
+      git config user.email "${GH_EMAIL}"
+
 jobs:
   dependencies:
     <<: *working_directory
@@ -185,6 +196,7 @@ jobs:
       - run:
           name: Documentation
           command: yarn docs
+      - <<: *setup_git
       - run:
           name: Upload
           command: |
