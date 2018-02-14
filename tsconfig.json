@@ -1,0 +1,46 @@
+{
+  "compilerOptions": {
+    "module": "ES2015",
+    "target": "ES2017",
+    "moduleResolution": "node",
+    "declaration": true,
+    "removeComments": true,
+    "sourceMap": true,
+    "strict": true,
+    "noEmitOnError": true,
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "skipLibCheck": true,
+    "outDir": "dist/lib",
+    "baseUrl": ".",
+    "paths": {
+      "@lib/*": ["lib/*"]
+    },
+    "newLine": "LF",
+    "jsx": "react-native",
+    "lib": [
+      "es2017",
+      "dom",
+      "esnext.asynciterable"
+    ]
+  },
+  "include": [
+    "lib/**/*"
+  ],
+  "exclude": [
+    "**/*.test.ts"
+  ],
+  "typedocOptions": {
+    "name": "EF React Native Asynchronous Button",
+    "out": "dist/docs",
+    "readme": "docs/README.md",
+    "hideGenerator": true,
+    "excludeNotExported": true,
+    "excludePrivate": true,
+    "logger": "none",
+    "exclude": "**/*.test.ts"
+  }
+}

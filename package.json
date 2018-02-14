@@ -1,0 +1,125 @@
+{
+  "name": "@ef-carbon/react-native-async-button",
+  "version": "0.0.0",
+  "description": "A button that can update the rendering state dependent on an asynchronous operation",
+  "main": "dist/lib/index.cjs.js",
+  "module": "dist/lib/index.js",
+  "types": "dist/lib/index.d.ts",
+  "repository": "https://github.com/ef-carbon/react-native-async-button.git",
+  "license": "MIT",
+  "engines": {
+    "node": ">=8.3"
+  },
+  "scripts": {
+    "postinstall": "replace -q __snapshots__ fixtures node_modules -r --include='*.js'",
+    "prepublishOnly": "yarn -s build",
+    "commit": "git-cz",
+    "distclean": "git clean -Xfd",
+    "clean": "git clean -Xfde node_modules",
+    "build": "yarn -s build:ts",
+    "postbuild": "ef-tspm -s && yarn -s build:rollup",
+    "build:ts": "tsc",
+    "build:rollup": "rollup -c",
+    "format": "yarn -s lint:format:fix",
+    "lint": "yarn -s lint:ts && yarn -s lint:format && yarn -s lint:commit && yarn -s lint:ci",
+    "lint:fix": "yarn -s lint:ts:fix && yarn -s lint:format:fix",
+    "lint:ci": "yamllint .circleci/config.yml",
+    "lint:ts": "tslint --project lint -t verbose",
+    "lint:ts:fix": "yarn -s lint:ts --fix",
+    "lint:format": "yarn -s lint:format:fix --verify",
+    "lint:format:fix": "tsfmt --useTsconfig lint/tsconfig.json -r",
+    "lint:commit": "commitlint --from=$(git merge-base origin/master HEAD) --to=HEAD",
+    "watch:ts": "tsc -w",
+    "watch:test": "jest --watch",
+    "test": "jest",
+    "coverage": "yarn -s test --coverage",
+    "ci": "yarn -s build && yarn -s lint && yarn -s test && yarn -s docs",
+    "fix": "yarn -s lint:fix",
+    "docs": "yarn -s typedoc lib",
+    "docs:open": "yarn -s opn dist/docs/index.html"
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "yarn -s ci",
+      "commit-msg": "commitlint -e $GIT_PARAMS"
+    }
+  },
+  "directories": {
+    "lib": "lib",
+    "test": "test",
+    "doc": "docs"
+  },
+  "peerDependencies": {
+    "react": "^16.2.0",
+    "react-native": "^0.53.0"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^6.0.5",
+    "@commitlint/config-conventional": "^6.0.4",
+    "@ef-carbon/tspm": "^2.1.0",
+    "@semantic-release/changelog": "^1.0.0",
+    "@semantic-release/git": "^3.0.0",
+    "@types/jest": "^22.1.1",
+    "@types/react": "^16.0.37",
+    "@types/react-native": "^0.52.9",
+    "acorn-jsx": "^4.1.1",
+    "babel-core": "^6.0.0",
+    "babel-jest": "^22.2.2",
+    "babel-preset-react-native": "^4.0.0",
+    "codecov": "^3.0.0",
+    "commitizen": "^2.9.6",
+    "cz-conventional-changelog": "^2.1.0",
+    "escodegen-wallaby": "^1.6.17",
+    "estraverse": "*",
+    "estraverse-fb": "^1.3.2",
+    "husky": "^0.15.0-rc.3",
+    "jest": "^22.1.4",
+    "jest-junit-reporter": "^1.1.0",
+    "opn-cli": "^3.1.0",
+    "react": "^16.2.0",
+    "react-native": "^0.53.0",
+    "react-test-renderer": "^16.2.0",
+    "replace": "^0.3.0",
+    "rollup": "^0.55.3",
+    "rollup-plugin-jsx": "^1.0.3",
+    "semantic-release": "^13.1.1",
+    "ts-jest": "^22.0.2",
+    "tslint": "^5.9.1",
+    "typedoc": "^0.10.0",
+    "typescript": "^2.7.1",
+    "typescript-formatter": "^7.0.1",
+    "yaml-lint": "^1.0.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  },
+  "jest": {
+    "preset": "react-native",
+    "globals": {
+      "ts-jest": {
+        "tsConfigFile": "test/tsconfig.json",
+        "useBabelrc": true
+      }
+    },
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx"
+    ],
+    "transform": {
+      "^.+\\.(js|jsx)$": "babel-jest",
+      "^.+\\.(ts|tsx)$": "ts-jest"
+    },
+    "testMatch": [
+      "**/test/**/*.test.(ts|tsx)"
+    ],
+    "testEnvironment": "node",
+    "moduleNameMapper": {
+      "^@test(.*)$": "<rootDir>/test$1",
+      "^@lib(.*)$": "<rootDir>/lib$1"
+    }
+  }
+}
