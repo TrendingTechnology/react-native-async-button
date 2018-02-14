@@ -176,6 +176,22 @@ jobs:
           name: Release
           command: npx semantic-release
 
+  githubPages:
+    <<: *working_directory
+    <<: *docker
+    steps:
+      - checkout
+      - <<: *restore_cache
+      - run:
+          name: Documentation
+          command: yarn docs
+      - run:
+          name: Upload
+          command: |
+            git add -f dist/docs
+            git commit --message 'chore(docs): update documentation [skip ci]'
+            git subtree push --prefix dist/docs origin gh-pages
+
 workflows:
   version: 2
   build:
@@ -203,6 +219,13 @@ workflows:
           requires:
             - test
       - release:
+          requires:
+            - test
+          filters:
+            branches:
+              only:
+                - master
+      - githubPages:
           requires:
             - test
           filters:
