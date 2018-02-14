@@ -11,7 +11,7 @@
     "node": ">=8.3"
   },
   "scripts": {
-    "postinstall": "replace -q __snapshots__ fixtures node_modules -r --include='*.js'",
+    "postinstall": "replace -q __snapshots__ fixtures node_modules -r --include='*.js' --fileColor=blue",
     "prepublishOnly": "yarn -s build",
     "commit": "git-cz",
     "distclean": "git clean -Xfd",
