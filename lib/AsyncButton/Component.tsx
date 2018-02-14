@@ -102,6 +102,75 @@ function renderComponent(union: Component): React.ReactElement<any> | undefined 
   return React.isValidElement(element) ? element : <Cls />;
 }
 
+/**
+ * A button that can change between multiple states:
+ * ```
+ *                              +-------+
+ * +---+------------------------> Idle  <------------------------+---+
+ * |   |                        +---+---+                        |   |
+ * |   |                            +                            |   |
+ * |   |                         onPress                         |   |
+ * |   |                            |                            |   |
+ * |   |                     +------v------+                     |   |
+ * |   |                     | Processing  |                     |   |
+ * |   |                     +------+------+                     |   |
+ * |   |                            |                            |   |
+ * |   |                 +-resolve--+---reject-+                 |   |
+ * |   |                 |                     |                 |   |
+ * |   |       +---------+--------+   +--------+---------+       |   |
+ * |   +-false-+ !!successTimeout |   | !!failureTimeout +-false-+   |
+ * |           +---------+--------+   +--------+---------+           |
+ * |                     |                     |                     |
+ * |                +----+----+           +----+----+                |
+ * |                | Success <---+   +---> Failure |                |
+ * |                +----+----+ true true +----+----+                |
+ * |                     |        |   |        |                     |
+ * | +-------------------v--------++ ++--------v-------------------+ |
+ * | | successTimeout === Infinity | | failureTimeout === Infinity | |
+ * | +--------------+--------------+ +--------------+--------------+ |
+ * |                |                               |                |
+ * | +--------------v--------------+ +--------------v--------------+ |
+ * +-+ await sleep(successTimeout) | | await sleep(failureTimeout) +-+
+ *   +-----------------------------+ +-----------------------------+
+ * ```
+ * @example <caption>Demo video code</caption>
+ * <img
+ *   style="float: right; border: 1px solid grey; box-shadow: 0 0 4px rgba(0, 0, 0, 0.25); margin: 2.5em 1em 0"
+ *   src="media://demo.gif"
+ * />
+ * ```
+ * <View>
+ *   <AsyncButton
+ *     SendComponent={<Text>Send</Text>}
+ *     onPress={success}
+ *   />
+ *   <AsyncButton
+ *     SendComponent={<Text>Send + Reset</Text>}
+ *     sentTimeout={1000}
+ *     SentComponent={SentComponent}
+ *     onPress={success}
+ *   />
+ *   <AsyncButton
+ *     SendComponent={<Text>Send + No Reset</Text>}
+ *     sentTimeout={Infinity}
+ *     SentComponent={SentComponent}
+ *     onPress={success}
+ *   />
+ *   <AsyncButton
+ *     SendComponent={<Text>Error + Reset</Text>}
+ *     errorTimeout={1000}
+ *     ErrorComponent={ErrorComponent}
+ *     onPress={error}
+ *   />
+ *   <AsyncButton
+ *     SendComponent={<Text>Error + No Reset</Text>}
+ *     errorTimeout={Infinity}
+ *     ErrorComponent={ErrorComponent}
+ *     onPress={error}
+ *   />
+ * </View>
+ * ```
+ */
 class AsyncButton extends React.Component<IProps, IState> {
   private synchronous: boolean = false;
 
@@ -137,37 +206,61 @@ class AsyncButton extends React.Component<IProps, IState> {
       );
   }
 
+  /**
+   * The button is idle and awaiting user input to state the asyncronous operation
+   */
   isIdle(): boolean {
     return !(this.success || this.processing || this.failure);
   }
 
+  /**
+   * The button is current performing the asyncronous operation
+   */
   isProcessing(): boolean {
     const { promise, timer } = this.state;
     return promise !== undefined && timer === undefined;
   }
 
+  /**
+   * The asyncronous operation completed and the button is currently showing the successful state for `successTimeout`
+   */
   isSuccess(): boolean {
     const { promise, timer, error } = this.state;
     return promise === undefined && timer !== undefined && error === undefined;
   }
 
+  /**
+   * The asyncronous operation completed and the button is currently showing the failure state for `failureTimeout`
+   */
   isFailure(): boolean {
     const { promise, timer, error } = this.state;
     return promise === undefined && timer !== undefined && error !== undefined;
   }
 
+  /**
+   * @see {@link isIdle}
+   */
   get idle(): boolean {
     return this.isIdle();
   }
 
+  /**
+   * @see {@link isProcessing}
+   */
   get processing(): boolean {
     return this.isProcessing();
   }
 
+  /**
+   * @see {@link isSuccess}
+   */
   get success(): boolean {
     return this.isSuccess();
   }
 
+  /**
+   * @see {@link isFailure}
+   */
   get failure(): boolean {
     return this.isFailure();
   }
@@ -261,7 +354,7 @@ class AsyncButton extends React.Component<IProps, IState> {
   private renderErrorComponent(): React.ReactElement<any> | undefined {
     return renderComponent(this.props.ErrorComponent || this.props.IdleComponent);
   }
-};
+}
 
 export interface IAsyncButtonStatic extends React.ComponentClass<IProps> {
   /**
@@ -290,22 +383,22 @@ export interface IAsyncButtonStatic extends React.ComponentClass<IProps> {
   isFailure(): boolean;
 
   /**
-   * @see isIdle
+   * @see {@link isIdle}
    */
   readonly idle: boolean;
 
   /**
-   * @see isProcessing
+   * @see {@link isProcessing}
    */
   readonly processing: boolean;
 
   /**
-   * @see isSuccess
+   * @see {@link isSuccess}
    */
   readonly success: boolean;
 
   /**
-   * @see isFailure
+   * @see {@link isFailure}
    */
   readonly failure: boolean;
 }

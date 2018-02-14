@@ -23,6 +23,39 @@
 yarn add @ef-carbon/react-native-async-button
 ```
 
+```jsx
+<View>
+  <AsyncButton
+    SendComponent={<Text>Send</Text>}
+    onPress={success}
+  />
+  <AsyncButton
+    SendComponent={<Text>Send + Reset</Text>}
+    sentTimeout={1000}
+    SentComponent={SentComponent}
+    onPress={success}
+  />
+  <AsyncButton
+    SendComponent={<Text>Send + No Reset</Text>}
+    sentTimeout={Infinity}
+    SentComponent={SentComponent}
+    onPress={success}
+  />
+  <AsyncButton
+    SendComponent={<Text>Error + Reset</Text>}
+    errorTimeout={1000}
+    ErrorComponent={ErrorComponent}
+    onPress={error}
+  />
+  <AsyncButton
+    SendComponent={<Text>Error + No Reset</Text>}
+    errorTimeout={Infinity}
+    ErrorComponent={ErrorComponent}
+    onPress={error}
+  />
+</View>
+```
+
 Read the [documentation][docs] for API guidance.
 
 ## Development
@@ -91,7 +124,7 @@ There are various scripts available that provide the workflow steps for the proj
 
 [![Code Coverage Graph][codecov-graph]][codecov]
 
-[demo-video]: demo.gif
+[demo-video]: media/demo.gif
 [greenkeeper]: https://greenkeeper.io/
 [greenkeeper-badge]: https://badges.greenkeeper.io/ef-carbon/react-native-async-button.svg
 [docs]: docs/README.md
