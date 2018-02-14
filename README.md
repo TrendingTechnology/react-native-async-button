@@ -15,6 +15,8 @@
 
 > `react-native` button for handling asynchronous operations
 
+![Demo Video][demo-video]
+
 ## Usage
 
 ```
@@ -89,6 +91,7 @@ There are various scripts available that provide the workflow steps for the proj
 
 [![Code Coverage Graph][codecov-graph]][codecov]
 
+[demo-video]: demo.gif
 [greenkeeper]: https://greenkeeper.io/
 [greenkeeper-badge]: https://badges.greenkeeper.io/ef-carbon/react-native-async-button.svg
 [docs]: docs/README.md
