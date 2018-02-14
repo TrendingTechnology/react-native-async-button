@@ -200,9 +200,9 @@ jobs:
       - run:
           name: Upload
           command: |
-            git add -f dist/docs
+            git add --force dist/docs
             git commit --message 'chore(docs): update documentation [skip ci]'
-            git subtree push --prefix dist/docs origin gh-pages
+            git subtree push --force --prefix dist/docs origin gh-pages
 
 workflows:
   version: 2
