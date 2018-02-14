@@ -127,7 +127,7 @@ There are various scripts available that provide the workflow steps for the proj
 [demo-video]: media/demo.gif
 [greenkeeper]: https://greenkeeper.io/
 [greenkeeper-badge]: https://badges.greenkeeper.io/ef-carbon/react-native-async-button.svg
-[docs]: docs/README.md
+[docs]: https://ef-carbon.github.io/react-native-async-button/
 [yarn]: https://yarnpkg.com
 [npm]: https://www.npmjs.com/package/@ef-carbon/react-native-async-button
 [codecov]: https://codecov.io/gh/ef-carbon/react-native-async-button
