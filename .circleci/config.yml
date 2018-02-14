@@ -202,7 +202,8 @@ jobs:
           command: |
             git add --force dist/docs
             git commit --message 'chore(docs): update documentation [skip ci]'
-            git subtree push --force --prefix dist/docs origin gh-pages
+            git subtree split --prefix dist/docs --branch gh-pages
+            git push --force origin gh-pages
 
 workflows:
   version: 2
