@@ -10,7 +10,11 @@ export default {
     sourcemap: true
   },
   plugins: [
-    jsx({ factory: 'React.createElement'})
+    jsx({
+      factory: 'React.createElement',
+      passUnknownTagsToFactory: true,
+      arrayChildren: false
+    })
   ],
   external: [
     'react',
