@@ -2,6 +2,7 @@
 
 [![CircleCI][circleci-badge]][circleci]
 [![Code Coverage][codecov-badge]][codecov]
+[![Greenkeeper][greenkeeper-badge]][greenkeeper]
 [![NPM Version][npm-version-badge]][npm]
 [![License][license-badge]][license]
 [![NPM Weekly Downloads][npm-downloads-week-badge]][npm]
