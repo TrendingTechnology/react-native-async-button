@@ -1,3 +1,11 @@
+<a name="2.1.0"></a>
+# [2.1.0](https://github.com/ef-carbon/react-native-async-button/compare/v2.0.2...v2.1.0) (2018-02-15)
+
+
+### Features
+
+* **context-button:** implement a context async button ([84f89d7](https://github.com/ef-carbon/react-native-async-button/commit/84f89d7))
+
 <a name="2.0.2"></a>
 ## [2.0.2](https://github.com/ef-carbon/react-native-async-button/compare/v2.0.1...v2.0.2) (2018-02-15)
 
