@@ -1,3 +1,16 @@
+<a name="2.0.0"></a>
+# [2.0.0](https://github.com/ef-carbon/react-native-async-button/compare/v1.0.1...v2.0.0) (2018-02-15)
+
+
+### Code Refactoring
+
+* **component:** rename `Error` to `Failure` ([d894a53](https://github.com/ef-carbon/react-native-async-button/commit/d894a53))
+
+
+### BREAKING CHANGES
+
+* **component:** the `ErrorComponent` property has changed to `FailureComponent` and the `onError` callback has changed to `onFailure`. This was done to correct make the nomenclature consistent.
+
 <a name="1.0.1"></a>
 ## [1.0.1](https://github.com/ef-carbon/react-native-async-button/compare/v1.0.0...v1.0.1) (2018-02-15)
 
