@@ -133,7 +133,7 @@ There are various scripts available that provide the workflow steps for the proj
 [npm]: https://www.npmjs.com/package/@ef-carbon/react-native-async-button
 [codecov]: https://codecov.io/gh/ef-carbon/react-native-async-button
 [codecov-badge]: https://img.shields.io/codecov/c/token/Re0IsMvcF1/github/ef-carbon/react-native-async-button.svg
-[codecov-graph]: https://codecov.io/gh/ef-carbon/react-native-async-button/branch/master/graphs/commits.svg?token=Re0IsMvcF1
+[codecov-graph]: https://codecov.io/gh/ef-carbon/react-native-async-button/branch/master/graphs/commits.svg
 [npm-version-badge]: https://img.shields.io/npm/v/@ef-carbon/react-native-async-button.svg
 [npm-downloads-week-badge]: https://img.shields.io/npm/dw/@ef-carbon/react-native-async-button.svg
 [npm-downloads-month-badge]: https://img.shields.io/npm/dm/@ef-carbon/react-native-async-button.svg
