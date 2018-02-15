@@ -1,3 +1,11 @@
+<a name="2.0.1"></a>
+## [2.0.1](https://github.com/ef-carbon/react-native-async-button/compare/v2.0.0...v2.0.1) (2018-02-15)
+
+
+### Bug Fixes
+
+* **build:** correctly convert rolled up JSX ([7407eac](https://github.com/ef-carbon/react-native-async-button/commit/7407eac))
+
 <a name="2.0.0"></a>
 # [2.0.0](https://github.com/ef-carbon/react-native-async-button/compare/v1.0.1...v2.0.0) (2018-02-15)
 
