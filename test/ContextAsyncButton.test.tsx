@@ -22,7 +22,7 @@ async function failure(context: IContext): Promise<void> {
 const idleComponent = () => <Text>Hey, there!</Text>;
 
 // TODO: https://github.com/Microsoft/TypeScript/issues/6395
-interface ISpecializedContextAsyncButton { new(): ContextAsyncButton<T>; }
+interface ISpecializedContextAsyncButton { new(): ContextAsyncButton<IContext>; }
 // tslint:disable-next-line:variable-name
 const SpecializedContextAsyncButton = ContextAsyncButton as ISpecializedContextAsyncButton;
 
