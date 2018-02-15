@@ -13,81 +13,121 @@ export type Component = React.ComponentClass<any> | React.ReactElement<any> | Co
 
 export type Callback = () => void;
 
-export interface IProps {
+export interface IOnPress {
   /**
    * Invoked when the user taps the button
    */
   onPress(): Promise<void>;
+}
 
+export interface IDisabled {
   /**
    * Determines if the button is enabled or not
    */
-  disabled?: boolean;
+  disabled: boolean;
+}
 
+export interface ISuccessTimeout {
   /**
    * The amount of time that the success component will be shown after a successful asynchronous operation. Can be set
    * to `Infinity` to show the success component with no reset which is useful for single asynchronous operation such as
    * submitting data. The button can be explicitly reset with `Button.reset` if needed.
    */
-  successTimeout?: Milliseconds;
+  successTimeout: Milliseconds;
+}
 
+export interface IFailureTimeout {
   /**
    * The amount of time that the failure component will be shown. Can be set to `Infinity` to show the failure component
    * with no reset. The button can be explicitly reset with `Button.reset` if needed.
    */
-  failureTimeout?: Milliseconds;
+  failureTimeout: Milliseconds;
+}
 
+export interface IStyle {
   /**
    * The style for the component
    */
-  style?: StyleProp<ViewStyle>;
+  style: StyleProp<ViewStyle>;
+}
 
+export interface IIdleComponent {
   /**
    * The component that will be rendered when the button is idle
    */
   IdleComponent: Component;
+}
 
+export interface IProcessingComponent {
   /**
    * Rendered when the asynchronous operation is in flight, defaults to `ActivityIndicator`
    */
-  ProcessingComponent?: Component;
+  ProcessingComponent: Component;
+}
 
+export interface ISuccessComponent {
   /**
    * Rendered when the asynchronous operation has successfully completed. Will be shown for `successTimeout` before
    * resetting back to the idle state. Defaults to the `ProcessingComponent`
    */
-  SuccessComponent?: Component;
+  SuccessComponent: Component;
+}
 
+export interface IFailureComponent {
   /**
    * Rendered when the asynchronous operation has returned an failure. Will be shown for `failureTimeout` before
    * resetting back to the idle state. Defaults to the `ProcessingComponent`
    */
-  FailureComponent?: Component;
+  FailureComponent: Component;
+}
 
+export interface IOnProcessing {
   /**
    * Invoked when the user has requested the asynchronous operation to occur
    */
-  onProcessing?: Callback;
+  onProcessing: Callback;
+}
 
+export interface IOnSuccess {
   /**
    * Invoked when the asynchronous function successfully completed
    */
-  onSuccess?: Callback;
+  onSuccess: Callback;
+}
 
+export interface IOnFailure {
   /**
    * Invoked when the asynchronous operation created an failure
    */
-  onFailure?: Callback;
+  onFailure: Callback;
+}
 
+export interface IOnComplete {
   /**
    * Invoked when the button has completed the asynchronous operation
    */
-  onComplete?: Callback;
+  onComplete: Callback;
 }
 
-type Infinity = number;
+export interface IBaseProps extends
+  Partial<IDisabled>,
+  Partial<ISuccessTimeout>,
+  Partial<IFailureTimeout>,
+  Partial<IStyle>,
+  IIdleComponent,
+  Partial<IProcessingComponent>,
+  Partial<ISuccessComponent>,
+  Partial<IFailureComponent>,
+  Partial<IOnProcessing>,
+  Partial<IOnSuccess>,
+  Partial<IOnFailure>,
+  Partial<IOnComplete> { }
 
-interface IState {
+export interface IProps extends IOnPress, IBaseProps { }
+
+export type Infinity = number;
+
+export interface IState {
   error?: Error;
   promise?: Promise<void>;
   disabled: boolean;
