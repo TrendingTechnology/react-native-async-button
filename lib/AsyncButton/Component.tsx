@@ -172,19 +172,26 @@ function renderComponent(union: Component): React.ReactElement<any> | undefined 
  * ```
  */
 class AsyncButton extends React.Component<IProps, IState> {
-  private synchronous: boolean = false;
+  private updateState: <K extends keyof IState>(
+    state: ((prevState: Readonly<IState>, props: IProps) => (Pick<IState, K> | IState)) | (Pick<IState, K> | IState),
+    callback?: () => void,
+  ) => void;
 
   constructor(props: IProps) {
     super(props);
     this.state = {
       disabled: props.disabled || false,
     };
+    this.updateState = this.setState;
   }
 
   componentWillUnmount(): void {
     const { timer } = this.state;
-    if (timer !== undefined || timer !== Infinity) { clearTimeout(this.state.timer as NodeJS.Timer); }
-    this.synchronous = true;
+    if (timer !== undefined || timer !== Infinity) { clearTimeout(timer as NodeJS.Timer); }
+    this.updateState = <K extends keyof IState>(
+      _state: ((prevState: Readonly<IState>, props: IProps) => (Pick<IState, K> | IState)) | (Pick<IState, K> | IState),
+      _callback?: () => void,
+    ) => { };  // tslint:disable-line:no-empty
   }
 
   componentWillReceiveProps({ disabled: prop }: IProps): void {
@@ -269,7 +276,7 @@ class AsyncButton extends React.Component<IProps, IState> {
     if (this.processing) {
       throw new Error('Cannot reset the button whilst the asynchronous operation is processing');
     }
-    this.setState({ promise: undefined, error: undefined, timer: undefined, disabled: !!this.props.disabled });
+    this.updateState({ promise: undefined, error: undefined, timer: undefined, disabled: !!this.props.disabled });
   }
 
   private process(): void {
@@ -277,12 +284,14 @@ class AsyncButton extends React.Component<IProps, IState> {
       if (this.props.onProcessing) { this.props.onProcessing(); }
     } finally {
       const promise = this.props.onPress().then(this.resolve, this.reject);
-      this.setState({ promise, disabled: true });
+      this.updateState({ promise, disabled: true });
     }
   }
 
-  private setTimeout(duration?: Milliseconds): NodeJS.Timer | Infinity {
-    if (duration !== Infinity) {
+  private setTimeout(duration?: Milliseconds): NodeJS.Timer | Infinity | undefined {
+    if (duration === undefined) {
+      this.complete();
+    } else if (duration !== Infinity) {
       return setTimeout(this.complete, duration || 0);
     }
     return duration;
@@ -292,9 +301,8 @@ class AsyncButton extends React.Component<IProps, IState> {
     const { successTimeout: timeout } = this.props;
     try {
       if (this.props.onSuccess) { this.props.onSuccess(); }
-      if (this.synchronous || timeout === undefined) { return this.complete(); }
     } finally {
-      this.setState({ promise: undefined, timer: this.setTimeout(timeout) });
+      this.updateState({ promise: undefined, timer: this.setTimeout(timeout) });
     }
   }
 
@@ -302,18 +310,16 @@ class AsyncButton extends React.Component<IProps, IState> {
     const { failureTimeout: timeout } = this.props;
     try {
       if (this.props.onFailure) { this.props.onFailure(); }
-      if (this.synchronous || timeout === undefined) { return this.complete(); }
     } finally {
-      this.setState({ promise: undefined, timer: this.setTimeout(timeout), error });
+      this.updateState({ promise: undefined, timer: this.setTimeout(timeout), error });
     }
   }
 
   private readonly complete = (): void => {
     try {
       if (this.props.onComplete) { this.props.onComplete(); }
-      if (this.synchronous) { return; }
     } finally {
-      this.reset();
+      this.updateState({ promise: undefined, error: undefined, timer: undefined, disabled: !!this.props.disabled });
     }
   }
 
