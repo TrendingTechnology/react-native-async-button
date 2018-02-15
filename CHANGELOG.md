@@ -1,3 +1,11 @@
+<a name="2.0.2"></a>
+## [2.0.2](https://github.com/ef-carbon/react-native-async-button/compare/v2.0.1...v2.0.2) (2018-02-15)
+
+
+### Bug Fixes
+
+* **button:** better handle synchronous resets ([4eb7dd1](https://github.com/ef-carbon/react-native-async-button/commit/4eb7dd1))
+
 <a name="2.0.1"></a>
 ## [2.0.1](https://github.com/ef-carbon/react-native-async-button/compare/v2.0.0...v2.0.1) (2018-02-15)
 
