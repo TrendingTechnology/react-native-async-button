@@ -62,7 +62,7 @@ export interface IProps {
    * Rendered when the asynchronous operation has returned an failure. Will be shown for `failureTimeout` before
    * resetting back to the idle state. Defaults to the `ProcessingComponent`
    */
-  ErrorComponent?: Component;
+  FailureComponent?: Component;
 
   /**
    * Invoked when the user has requested the asynchronous operation to occur
@@ -77,7 +77,7 @@ export interface IProps {
   /**
    * Invoked when the asynchronous operation created an failure
    */
-  onError?: Callback;
+  onFailure?: Callback;
 
   /**
    * Invoked when the button has completed the asynchronous operation
@@ -301,7 +301,7 @@ class AsyncButton extends React.Component<IProps, IState> {
   private readonly reject = (error: Error): void => {
     const { failureTimeout: timeout } = this.props;
     try {
-      if (this.props.onError) { this.props.onError(); }
+      if (this.props.onFailure) { this.props.onFailure(); }
       if (this.synchronous || timeout === undefined) { return this.complete(); }
     } finally {
       this.setState({ promise: undefined, timer: this.setTimeout(timeout), error });
@@ -329,7 +329,7 @@ class AsyncButton extends React.Component<IProps, IState> {
     } else if (this.success) {
       return this.renderSuccessComponent();
     } else if (this.failure) {
-      return this.renderErrorComponent();
+      return this.renderFailureComponent();
     } else {
       return this.renderIdleComponent();
     }
@@ -351,8 +351,8 @@ class AsyncButton extends React.Component<IProps, IState> {
     return renderComponent(this.props.SuccessComponent || this.props.IdleComponent);
   }
 
-  private renderErrorComponent(): React.ReactElement<any> | undefined {
-    return renderComponent(this.props.ErrorComponent || this.props.IdleComponent);
+  private renderFailureComponent(): React.ReactElement<any> | undefined {
+    return renderComponent(this.props.FailureComponent || this.props.IdleComponent);
   }
 }
 
