@@ -110,6 +110,10 @@
   dependencies:
     find-up "^2.1.0"
 
+"@ef-carbon/react-render-component@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@ef-carbon/react-render-component/-/react-render-component-1.0.0.tgz#d38112f0a8cc3236b7ded47cda97910553ea95cb"
+
 "@ef-carbon/tspm@^2.1.0":
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/@ef-carbon/tspm/-/tspm-2.1.0.tgz#963b669d8428e00a8b621da02a1bed111ac330af"

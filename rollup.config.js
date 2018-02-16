@@ -18,7 +18,8 @@ export default {
   ],
   external: [
     'react',
-    'react-native'
+    'react-native',
+    '@ef-carbon/react-render-component'
   ],
   context: 'global'
 };

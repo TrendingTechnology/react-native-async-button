@@ -1,15 +1,12 @@
 // tslint:disable: no-any
 
+import renderComponent, { Component } from '@ef-carbon/react-render-component';
 import * as React from 'react';
 import { ActivityIndicator, StyleProp, TouchableHighlight, View, ViewStyle } from 'react-native';
 
 import styles from './styles';
 
 export type Milliseconds = number;
-
-export type ComponentFunction = () => React.ReactElement<any>;
-
-export type Component = React.ComponentClass<any> | React.ReactElement<any> | ComponentFunction | null;
 
 export type Callback = () => void;
 
@@ -132,14 +129,6 @@ export interface IState {
   promise?: Promise<void>;
   disabled: boolean;
   timer?: Infinity | NodeJS.Timer;
-}
-
-function renderComponent(union: Component): React.ReactElement<any> | undefined {
-  if (!union) { return undefined; }
-  const element = (typeof union === 'function' && !union.prototype.render) ? (union as ComponentFunction)() : union;
-  // tslint:disable-next-line:variable-name
-  const Cls = element as React.ComponentClass<any>;
-  return React.isValidElement(element) ? element : <Cls />;
 }
 
 /**
