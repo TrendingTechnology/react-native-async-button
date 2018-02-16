@@ -1,3 +1,11 @@
+<a name="2.1.1"></a>
+## [2.1.1](https://github.com/ef-carbon/react-native-async-button/compare/v2.1.0...v2.1.1) (2018-02-16)
+
+
+### Bug Fixes
+
+* **build:** use `£ef-carbon/react-render-component` ([14f5813](https://github.com/ef-carbon/react-native-async-button/commit/14f5813))
+
 <a name="2.1.0"></a>
 # [2.1.0](https://github.com/ef-carbon/react-native-async-button/compare/v2.0.2...v2.1.0) (2018-02-15)
 
