@@ -203,13 +203,13 @@ export interface IState {
 class AsyncButton extends React.PureComponent<IProps, IState> {
   private updateState: <K extends keyof IState>(
     state: ((prevState: Readonly<IState>, props: IProps) => (Pick<IState, K> | IState)) | (Pick<IState, K> | IState),
-    callback?: () => void,
+    callback?: () => void
   ) => void;
 
   constructor(props: IProps) {
     super(props);
     this.state = {
-      disabled: props.disabled || false,
+      disabled: props.disabled || false
     };
     this.updateState = this.setState;
   }
@@ -219,7 +219,7 @@ class AsyncButton extends React.PureComponent<IProps, IState> {
     if (timer !== undefined || timer !== Infinity) { clearTimeout(timer as NodeJS.Timer); }
     this.updateState = <K extends keyof IState>(
       _state: ((prevState: Readonly<IState>, props: IProps) => (Pick<IState, K> | IState)) | (Pick<IState, K> | IState),
-      _callback?: () => void,
+      _callback?: () => void
     ) => { };  // tslint:disable-line:no-empty
   }
 

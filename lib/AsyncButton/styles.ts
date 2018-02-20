@@ -5,8 +5,8 @@ const styles: { [prop: string]: RegisteredStyle<ImageStyle | TextStyle | ViewSty
     minWidth: 44,
     minHeight: 44,
     alignItems: 'center',
-    justifyContent: 'center',
-  },
+    justifyContent: 'center'
+  }
 });
 
 export default styles;

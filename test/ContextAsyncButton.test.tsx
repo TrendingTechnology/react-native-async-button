@@ -31,7 +31,7 @@ describe('ContextAsyncButton', () => {
     it('should render', () => {
       const context: IContext = { data: 1 };
       const tree = renderer.create(
-        <SpecializedContextAsyncButton context={context} onPress={success} IdleComponent={idleComponent} />,
+        <SpecializedContextAsyncButton context={context} onPress={success} IdleComponent={idleComponent} />
       ).toJSON();
       expect(tree).toMatchSnapshot();
     });
@@ -41,7 +41,7 @@ describe('ContextAsyncButton', () => {
     it('should render', () => {
       const context: IContext = { data: 1 };
       const tree = renderer.create(
-        <SpecializedContextAsyncButton context={context} onPress={failure} IdleComponent={idleComponent} />,
+        <SpecializedContextAsyncButton context={context} onPress={failure} IdleComponent={idleComponent} />
       ).toJSON();
       expect(tree).toMatchSnapshot();
     });
