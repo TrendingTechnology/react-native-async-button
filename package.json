@@ -49,6 +49,9 @@
     "test": "test",
     "doc": "docs"
   },
+  "dependencies": {
+    "@ef-carbon/react-render-component": "^1.0.0"
+  },
   "peerDependencies": {
     "react": "^16.2.0",
     "react-native": "^0.53.0"
@@ -121,8 +124,5 @@
       "^@test(.*)$": "<rootDir>/test$1",
       "^@lib(.*)$": "<rootDir>/lib$1"
     }
-  },
-  "dependencies": {
-    "@ef-carbon/react-render-component": "^1.0.0"
   }
 }
