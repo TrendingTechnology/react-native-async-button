@@ -26,7 +26,7 @@ export interface IState { }
 /**
  * The context button can hold a context that will be passed to the `onPress` callback
  */
-export class ContextAsyncButton<Context> extends React.Component<IProps<Context>, IState> {
+export class ContextAsyncButton<Context> extends React.PureComponent<IProps<Context>, IState> {
   private buttonComponent?: IAsyncButtonStatic = undefined;
   /**
    * The button is idle and awaiting user input to state the asyncronous operation

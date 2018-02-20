@@ -200,7 +200,7 @@ export interface IState {
  * </View>
  * ```
  */
-class AsyncButton extends React.Component<IProps, IState> {
+class AsyncButton extends React.PureComponent<IProps, IState> {
   private updateState: <K extends keyof IState>(
     state: ((prevState: Readonly<IState>, props: IProps) => (Pick<IState, K> | IState)) | (Pick<IState, K> | IState),
     callback?: () => void,
