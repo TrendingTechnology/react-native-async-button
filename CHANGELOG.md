@@ -1,3 +1,11 @@
+<a name="2.1.3"></a>
+## [2.1.3](https://github.com/ef-carbon/react-native-async-button/compare/v2.1.2...v2.1.3) (2018-03-20)
+
+
+### Bug Fixes
+
+* **package:** allow any peer version of react and react-native ([12d5561](https://github.com/ef-carbon/react-native-async-button/commit/12d5561))
+
 <a name="2.1.2"></a>
 ## [2.1.2](https://github.com/ef-carbon/react-native-async-button/compare/v2.1.1...v2.1.2) (2018-02-20)
 
