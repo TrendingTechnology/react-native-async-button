@@ -11,7 +11,9 @@
     "node": ">=8.3"
   },
   "scripts": {
-    "prepare": "replace -q __snapshots__ fixtures node_modules -r --include='*.js' --fileColor=blue",
+    "prepare": "yarn -s replace:snapshots && yarn -s replace:mocks",
+    "replace:snapshots": "replace-in-file __snapshots__ fixtures 'node_modules/jest*/**/*.js'",
+    "replace:mocks": "replace-in-file __mocks__ mocks 'node_modules/jest*/**/*.js'",
     "prepublishOnly": "yarn -s build",
     "commit": "git-cz",
     "distclean": "git clean -Xfd",
@@ -83,7 +85,7 @@
     "react": "^16.2.0",
     "react-native": "^0.54.0",
     "react-test-renderer": "^16.2.0",
-    "replace": "^0.3.0",
+    "replace-in-file": "^3.2.0",
     "rollup": "^0.57.0",
     "rollup-plugin-jsx": "^1.0.3",
     "semantic-release": "^15.0.0",
