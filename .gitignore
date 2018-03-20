@@ -18,3 +18,5 @@ node_modules
 .DS_Store
 Thumbs.db
 *.tgz
+__snapshots__
+__mocks__
