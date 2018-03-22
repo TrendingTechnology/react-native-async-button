@@ -201,6 +201,11 @@ export interface IState {
  * ```
  */
 class AsyncButton extends React.PureComponent<IProps, IState> {
+  /**
+   * The default activity indicator to show
+   */
+  static ActivityIndicator: React.ComponentClass<any> = ActivityIndicator;
+
   private updateState: <K extends keyof IState>(
     state: ((prevState: Readonly<IState>, props: IProps) => (Pick<IState, K> | IState)) | (Pick<IState, K> | IState),
     callback?: () => void
@@ -379,7 +384,7 @@ class AsyncButton extends React.PureComponent<IProps, IState> {
   }
 
   private renderProcessingComponent(): React.ReactElement<any> | undefined {
-    return renderComponent(this.props.ProcessingComponent || ActivityIndicator);
+    return renderComponent(this.props.ProcessingComponent || AsyncButton.ActivityIndicator);
   }
 
   private renderSuccessComponent(): React.ReactElement<any> | undefined {
