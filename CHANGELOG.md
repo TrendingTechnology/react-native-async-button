@@ -1,3 +1,16 @@
+<a name="3.0.0"></a>
+# [3.0.0](https://github.com/ef-carbon/react-native-async-button/compare/v2.2.1...v3.0.0) (2018-03-22)
+
+
+### Bug Fixes
+
+* **async-button:** correct the static activity indicator property name ([c3b511e](https://github.com/ef-carbon/react-native-async-button/commit/c3b511e))
+
+
+### BREAKING CHANGES
+
+* **async-button:** `AsyncButton.ActivityIndicator` is now `AsyncButton.ProcessingCompoent` to mirror the instance property name. This provides much better nomenclature consistency
+
 <a name="2.2.1"></a>
 ## [2.2.1](https://github.com/ef-carbon/react-native-async-button/compare/v2.2.0...v2.2.1) (2018-03-22)
 
