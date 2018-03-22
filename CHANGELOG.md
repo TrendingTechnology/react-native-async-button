@@ -1,3 +1,11 @@
+<a name="2.2.1"></a>
+## [2.2.1](https://github.com/ef-carbon/react-native-async-button/compare/v2.2.0...v2.2.1) (2018-03-22)
+
+
+### Bug Fixes
+
+* **async-button:** default `ActivityIndicator` property more flexible ([37d23d5](https://github.com/ef-carbon/react-native-async-button/commit/37d23d5))
+
 <a name="2.2.0"></a>
 # [2.2.0](https://github.com/ef-carbon/react-native-async-button/compare/v2.1.3...v2.2.0) (2018-03-22)
 
