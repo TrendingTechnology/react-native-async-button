@@ -204,7 +204,7 @@ class AsyncButton extends React.PureComponent<IProps, IState> {
   /**
    * The default activity indicator to show
    */
-  static ActivityIndicator: Component = ActivityIndicator;
+  static ProcessingComponent: Component = ActivityIndicator;  // tslint:disable-line:variable-name
 
   private updateState: <K extends keyof IState>(
     state: ((prevState: Readonly<IState>, props: IProps) => (Pick<IState, K> | IState)) | (Pick<IState, K> | IState),
@@ -384,7 +384,7 @@ class AsyncButton extends React.PureComponent<IProps, IState> {
   }
 
   private renderProcessingComponent(): React.ReactElement<any> | undefined {
-    return renderComponent(this.props.ProcessingComponent || AsyncButton.ActivityIndicator);
+    return renderComponent(this.props.ProcessingComponent || AsyncButton.ProcessingComponent);
   }
 
   private renderSuccessComponent(): React.ReactElement<any> | undefined {
