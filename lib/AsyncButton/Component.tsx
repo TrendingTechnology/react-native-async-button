@@ -204,7 +204,7 @@ class AsyncButton extends React.PureComponent<IProps, IState> {
   /**
    * The default activity indicator to show
    */
-  static ActivityIndicator: React.ComponentClass<any> = ActivityIndicator;
+  static ActivityIndicator: Component = ActivityIndicator;
 
   private updateState: <K extends keyof IState>(
     state: ((prevState: Readonly<IState>, props: IProps) => (Pick<IState, K> | IState)) | (Pick<IState, K> | IState),
