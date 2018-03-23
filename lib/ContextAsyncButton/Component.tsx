@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 
-import AsyncButton, { IAsyncButtonStatic, IBaseProps as IAsyncButtonProps } from '@lib/AsyncButton';
+import AsyncButton, { IBaseProps as IAsyncButtonProps } from '@lib/AsyncButton';
 
 export interface IContext<Context> {
   /**
@@ -27,7 +27,7 @@ export interface IState { }
  * The context button can hold a context that will be passed to the `onPress` callback
  */
 export class ContextAsyncButton<Context> extends React.PureComponent<IProps<Context>, IState> {
-  private buttonComponent?: IAsyncButtonStatic = undefined;
+  private buttonComponent?: AsyncButton = undefined;
   /**
    * The button is idle and awaiting user input to state the asyncronous operation
    */
@@ -112,57 +112,15 @@ export class ContextAsyncButton<Context> extends React.PureComponent<IProps<Cont
     await this.props.onPress(this.props.context);
   }
 
-  // TODO: https://github.com/DefinitelyTyped/DefinitelyTyped/issues/16318
-  private readonly refButton = (component: /*TODO: IAsyncButtonStatic*/ any | null) => {
-    this.buttonComponent = component;
+  private readonly refButton = (instance: AsyncButton | null) => {
+    this.buttonComponent = instance || undefined;
   }
 }
 
-export interface IContextAsyncButtonStatic<Context> extends React.ComponentClass<IProps<Context>> {
-  /**
-   * Resets the button back to the idle state. Can only be done when the state is not `processing`
-   */
-  reset(): void;
+export interface IContextAsyncButtonStatic<Context> extends React.ComponentClass<IProps<Context>> { }
 
-  /**
-   * The button is idle and awaiting user input to state the asyncronous operation
-   */
-  isIdle(): boolean;
+const component: IContextAsyncButtonStatic<{}> = ContextAsyncButton;
 
-  /**
-   * The button is current performing the asyncronous operation
-   */
-  isProcessing(): boolean;
+export { component as Component };
 
-  /**
-   * The asyncronous operation completed and the button is currently showing the successful state for `successTimeout`
-   */
-  isSuccess(): boolean;
-
-  /**
-   * The asyncronous operation completed and the button is currently showing the failure state for `failureTimeout`
-   */
-  isFailure(): boolean;
-
-  /**
-   * @see {@link isIdle}
-   */
-  readonly idle: boolean;
-
-  /**
-   * @see {@link isProcessing}
-   */
-  readonly processing: boolean;
-
-  /**
-   * @see {@link isSuccess}
-   */
-  readonly success: boolean;
-
-  /**
-   * @see {@link isFailure}
-   */
-  readonly failure: boolean;
-}
-
-export default ContextAsyncButton;
+export default AsyncButton;

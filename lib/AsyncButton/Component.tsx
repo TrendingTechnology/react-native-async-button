@@ -396,53 +396,10 @@ class AsyncButton extends React.PureComponent<IProps, IState> {
   }
 }
 
-export interface IAsyncButtonStatic extends React.ComponentClass<IProps> {
-  /**
-   * Resets the button back to the idle state. Can only be done when the state is not `processing`
-   */
-  reset(): void;
+export interface IAsyncButtonStatic extends React.ComponentClass<IProps> { }
 
-  /**
-   * The button is idle and awaiting user input to state the asyncronous operation
-   */
-  isIdle(): boolean;
+const component: IAsyncButtonStatic = AsyncButton;
 
-  /**
-   * The button is current performing the asyncronous operation
-   */
-  isProcessing(): boolean;
+export { component as Component };
 
-  /**
-   * The asyncronous operation completed and the button is currently showing the successful state for `successTimeout`
-   */
-  isSuccess(): boolean;
-
-  /**
-   * The asyncronous operation completed and the button is currently showing the failure state for `failureTimeout`
-   */
-  isFailure(): boolean;
-
-  /**
-   * @see {@link isIdle}
-   */
-  readonly idle: boolean;
-
-  /**
-   * @see {@link isProcessing}
-   */
-  readonly processing: boolean;
-
-  /**
-   * @see {@link isSuccess}
-   */
-  readonly success: boolean;
-
-  /**
-   * @see {@link isFailure}
-   */
-  readonly failure: boolean;
-}
-
-const component: React.ComponentClass<IProps> = AsyncButton;
-
-export default component;
+export default AsyncButton;
