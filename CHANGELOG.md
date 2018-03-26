@@ -1,3 +1,13 @@
+<a name="3.0.1"></a>
+## [3.0.1](https://github.com/ef-carbon/react-native-async-button/compare/v3.0.0...v3.0.1) (2018-03-26)
+
+
+### Bug Fixes
+
+* correct the exports ([d3f27b8](https://github.com/ef-carbon/react-native-async-button/commit/d3f27b8))
+* correct the static types ([2898b6f](https://github.com/ef-carbon/react-native-async-button/commit/2898b6f))
+* correctly retrieve the static property ([57d21d5](https://github.com/ef-carbon/react-native-async-button/commit/57d21d5))
+
 <a name="3.0.0"></a>
 # [3.0.0](https://github.com/ef-carbon/react-native-async-button/compare/v2.2.1...v3.0.0) (2018-03-22)
 
