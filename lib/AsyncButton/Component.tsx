@@ -131,6 +131,11 @@ export interface IState {
   timer?: Infinity | NodeJS.Timer;
 }
 
+function processingComponent(): Component {
+  // tslint:disable-next-line:no-use-before-declare
+  return AsyncButton.ProcessingComponent || ActivityIndicator;
+}
+
 /**
  * A button that can change between multiple states:
  * ```
@@ -384,7 +389,7 @@ class AsyncButton extends React.PureComponent<IProps, IState> {
   }
 
   private renderProcessingComponent(): React.ReactElement<any> | undefined {
-    return renderComponent(this.props.ProcessingComponent || AsyncButton.ProcessingComponent);
+    return renderComponent(this.props.ProcessingComponent || processingComponent());
   }
 
   private renderSuccessComponent(): React.ReactElement<any> | undefined {
