@@ -17,6 +17,7 @@
     "outDir": "dist/lib",
     "baseUrl": ".",
     "paths": {
+      "@lib": ["lib/index"],
       "@lib/*": ["lib/*"]
     },
     "newLine": "LF",

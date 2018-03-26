@@ -123,4 +123,4 @@ const component: IContextAsyncButtonStatic<{}> = ContextAsyncButton;
 
 export { component as Component };
 
-export default AsyncButton;
+export default ContextAsyncButton;

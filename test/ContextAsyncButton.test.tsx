@@ -1,8 +1,8 @@
 import { } from 'jest';
-
 import * as React from 'react';
 import { Text } from 'react-native';
-import { ContextAsyncButton } from '../lib';
+
+import { ContextAsyncButton } from '@lib';
 
 import * as renderer from 'react-test-renderer';
 
