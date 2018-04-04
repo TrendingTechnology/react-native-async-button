@@ -13,6 +13,10 @@
 [![Semantic Release][semantic-release-badge]][semantic-release]
 [![Commitizen friendly][commitizen-badge]][commitizen]
 [![Conventional Commits][coventional-commits-badge]][coventional-commits]
+[![Direct Dependencies Status][david-dm-direct-badge]][david-dm]
+[![Developer Dependencies Status][david-dm-dev-badge]][david-dm]
+[![Peer Dependencies Status][david-dm-peer-badge]][david-dm]
+[![Optional Dependencies Status][david-dm-optional-badge]][david-dm]
 
 > `react-native` button for handling asynchronous operations
 
@@ -157,3 +161,8 @@ There are various scripts available that provide the workflow steps for the proj
 [commitizen-badge]: https://img.shields.io/badge/commitizen-friendly-brightgreen.svg
 [coventional-commits]: https://conventionalcommits.org
 [coventional-commits-badge]: https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg
+[david-dm-direct-badge]: https://img.shields.io/david/ef-carbon/react-native-async-button.svg
+[david-dm-dev-badge]: https://img.shields.io/david/dev/ef-carbon/react-native-async-button.svg
+[david-dm-peer-badge]: https://img.shields.io/david/peer/ef-carbon/react-native-async-button.svg
+[david-dm-optional-badge]: https://img.shields.io/david/optional/ef-carbon/react-native-async-button.svg
+[david-dm]: https://david-dm.org/
