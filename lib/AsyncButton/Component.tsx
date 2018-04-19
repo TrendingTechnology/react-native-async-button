@@ -1,5 +1,6 @@
 // tslint:disable: no-any
 
+import { ITheme as IRNSTheme } from '@ef-carbon/react-native-style';
 import renderComponent, { Component } from '@ef-carbon/react-render-component';
 import * as React from 'react';
 import { ActivityIndicator, StyleProp, TouchableHighlight, View, ViewStyle } from 'react-native';
@@ -22,6 +23,20 @@ export interface IDisabled {
    * Determines if the button is enabled or not
    */
   disabled: boolean;
+}
+
+export interface ITheme {
+  /**
+   * The theme to use to style the button
+   */
+  theme: IRNSTheme;
+}
+
+export interface IDisabledOpacity {
+  /**
+   * The opacity to be applied to the disabled component, defaults to 0.6
+   */
+  disabledOpacity: number;
 }
 
 export interface ISuccessTimeout {
@@ -53,6 +68,13 @@ export interface IIdleComponent {
    * The component that will be rendered when the button is idle
    */
   IdleComponent: Component;
+}
+
+export interface IDisabledComponent {
+  /**
+   * The component that will be rendered when the button is disabled
+   */
+  DisabledComponent: Component;
 }
 
 export interface IProcessingComponent {
@@ -111,7 +133,10 @@ export interface IBaseProps extends
   Partial<ISuccessTimeout>,
   Partial<IFailureTimeout>,
   Partial<IStyle>,
+  Partial<ITheme>,
   IIdleComponent,
+  Partial<IDisabledComponent>,
+  Partial<IDisabledOpacity>,
   Partial<IProcessingComponent>,
   Partial<ISuccessComponent>,
   Partial<IFailureComponent>,
@@ -127,7 +152,6 @@ export type Infinity = number;
 export interface IState {
   error?: Error;
   promise?: Promise<void>;
-  disabled: boolean;
   timer?: Infinity | NodeJS.Timer;
 }
 
@@ -219,7 +243,6 @@ class AsyncButton extends React.PureComponent<IProps, IState> {
   constructor(props: IProps) {
     super(props);
     this.state = {
-      disabled: props.disabled || false
     };
     this.updateState = this.setState;
   }
@@ -233,14 +256,18 @@ class AsyncButton extends React.PureComponent<IProps, IState> {
     ) => { };  // tslint:disable-line:no-empty
   }
 
-  componentWillReceiveProps({ disabled: prop }: IProps): void {
-    this.setState(({ disabled: state }) => ({ disabled: state || prop || false }));
-  }
-
   render(): React.ReactElement<any> {
     const element = this.renderElement();
-    return (this.state.disabled) ?
-      (<View style={[styles.container, this.props.style]}>{element}</View>) :
+    const { theme, disabledOpacity } = this.props;
+    const defaultOpacity = styles.disabled;
+    const themeOpacity = theme ? theme.opacity.opaque : undefined;
+    const propOpacity = disabledOpacity ? { opacity: disabledOpacity } : undefined;
+    return (this.processing || this.disabled) ?
+      (<View style={[
+        styles.container,
+        this.props.style,
+        this.disabled ? [defaultOpacity, themeOpacity, propOpacity] : undefined
+      ]}>{element}</View>) :
       (
         <TouchableHighlight
           style={[styles.container, this.props.style]}
@@ -257,6 +284,13 @@ class AsyncButton extends React.PureComponent<IProps, IState> {
    */
   isIdle(): boolean {
     return !(this.success || this.processing || this.failure);
+  }
+
+  /**
+   * The button is disabled and cannot be pressed
+   */
+  isDisabled(): boolean {
+    return this.props.disabled || false;
   }
 
   /**
@@ -291,6 +325,13 @@ class AsyncButton extends React.PureComponent<IProps, IState> {
   }
 
   /**
+   * @see {@link isDisabled}
+   */
+  get disabled(): boolean {
+    return this.isDisabled();
+  }
+
+  /**
    * @see {@link isProcessing}
    */
   get processing(): boolean {
@@ -315,7 +356,7 @@ class AsyncButton extends React.PureComponent<IProps, IState> {
     if (this.processing) {
       throw new Error('Cannot reset the button whilst the asynchronous operation is processing');
     }
-    this.updateState({ promise: undefined, error: undefined, timer: undefined, disabled: !!this.props.disabled });
+    this.updateState({ promise: undefined, error: undefined, timer: undefined });
   }
 
   private process(): void {
@@ -323,7 +364,7 @@ class AsyncButton extends React.PureComponent<IProps, IState> {
       if (this.props.onProcessing) { this.props.onProcessing(); }
     } finally {
       const promise = this.props.onPress().then(this.resolve, this.reject);
-      this.updateState({ promise, disabled: true });
+      this.updateState({ promise });
     }
   }
 
@@ -358,7 +399,7 @@ class AsyncButton extends React.PureComponent<IProps, IState> {
     try {
       if (this.props.onComplete) { this.props.onComplete(); }
     } finally {
-      this.updateState({ promise: undefined, error: undefined, timer: undefined, disabled: !!this.props.disabled });
+      this.updateState({ promise: undefined, error: undefined, timer: undefined });
     }
   }
 
@@ -375,6 +416,8 @@ class AsyncButton extends React.PureComponent<IProps, IState> {
       return this.renderSuccessComponent();
     } else if (this.failure) {
       return this.renderFailureComponent();
+    } else if (this.disabled) {
+      return this.renderDisabledComponent();
     } else {
       return this.renderIdleComponent();
     }
@@ -386,6 +429,10 @@ class AsyncButton extends React.PureComponent<IProps, IState> {
       throw new Error(`An idle component must be provided`);
     }
     return element;
+  }
+
+  private renderDisabledComponent(): React.ReactElement<any> | undefined {
+    return renderComponent(this.props.DisabledComponent || this.props.IdleComponent);
   }
 
   private renderProcessingComponent(): React.ReactElement<any> | undefined {

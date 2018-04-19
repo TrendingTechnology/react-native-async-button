@@ -50,6 +50,7 @@
     "doc": "docs"
   },
   "dependencies": {
+    "@ef-carbon/react-native-style": "^5.0.2",
     "@ef-carbon/react-render-component": "^1.2.0"
   },
   "peerDependencies": {

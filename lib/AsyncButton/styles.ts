@@ -6,6 +6,9 @@ const styles: { [prop: string]: RegisteredStyle<ImageStyle | TextStyle | ViewSty
     minHeight: 44,
     alignItems: 'center',
     justifyContent: 'center'
+  },
+  disabled: {
+    opacity: 0.6
   }
 });
 

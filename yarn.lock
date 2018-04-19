@@ -543,6 +543,12 @@
   dependencies:
     find-up "^2.1.0"
 
+"@ef-carbon/react-native-style@^5.0.2":
+  version "5.0.2"
+  resolved "https://registry.yarnpkg.com/@ef-carbon/react-native-style/-/react-native-style-5.0.2.tgz#1fe858fa34955ee51a7eb5749cf68e99dc514e82"
+  dependencies:
+    assert-never "^1.1.0"
+
 "@ef-carbon/react-render-component@^1.2.0":
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/@ef-carbon/react-render-component/-/react-render-component-1.2.0.tgz#2d25a01bc72a4a36701e9ebd4b1a6e1ea2d4e2ef"
@@ -1024,6 +1030,10 @@ asap@~2.0.3:
 asn1@~0.2.3:
   version "0.2.3"
   resolved "https://registry.yarnpkg.com/asn1/-/asn1-0.2.3.tgz#dac8787713c9966849fc8180777ebe9c1ddf3b86"
+
+assert-never@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/assert-never/-/assert-never-1.1.0.tgz#e7ac87d6d0191f19f19694c1266a2dd5c9e3becb"
 
 assert-plus@1.0.0, assert-plus@^1.0.0:
   version "1.0.0"
