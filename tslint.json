@@ -13,6 +13,7 @@
     "newline-before-return": false,
     "newline-per-chained-call": false,
     "no-default-export": false,
+    "no-empty-interface": false,
     "no-implicit-dependencies": false,
     "no-inferrable-types": [true, "ignore-properties"],
     "no-magic-numbers": false,

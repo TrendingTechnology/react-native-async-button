@@ -2,25 +2,20 @@
 
 import * as React from 'react';
 
-import AsyncButton, { IBaseProps as IAsyncButtonProps } from '@lib/AsyncButton';
+import AsyncButton, { IProps as IAsyncButtonProps } from '@lib/AsyncButton';
 
-export interface IContext<Context> {
+export interface IProps<Context> extends Pick<IAsyncButtonProps, Exclude<keyof IAsyncButtonProps, 'onPress'>> {
   /**
    * The value that will get passed to the `onPress` handler
    */
   context: Context;
-}
 
-export interface IOnPress<Context> {
   /**
    * The value that will get passed to the `onPress` handler
    */
   onPress(context: Context): Promise<void>;
 }
 
-export interface IProps<Context> extends IAsyncButtonProps, IContext<Context>, IOnPress<Context> { }
-
-// tslint:disable-next-line:no-empty-interface
 export interface IState { }
 
 /**
