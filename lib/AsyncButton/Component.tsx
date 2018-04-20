@@ -403,7 +403,7 @@ class AsyncButton extends React.PureComponent<IProps, IState> {
     }
   }
 
-  private renderElement(): React.ReactNode | undefined {
+  private renderElement(): React.ReactNode {
     if (this.processing) {
       return this.renderProcessingComponent();
     } else if (this.success) {
@@ -425,19 +425,19 @@ class AsyncButton extends React.PureComponent<IProps, IState> {
     return element;
   }
 
-  private renderDisabledComponent(): React.ReactNode | undefined {
+  private renderDisabledComponent(): React.ReactNode {
     return renderComponent(this.props.DisabledComponent || this.props.IdleComponent);
   }
 
-  private renderProcessingComponent(): React.ReactNode | undefined {
+  private renderProcessingComponent(): React.ReactNode {
     return renderComponent(this.props.ProcessingComponent || processingComponent());
   }
 
-  private renderSuccessComponent(): React.ReactNode | undefined {
+  private renderSuccessComponent(): React.ReactNode {
     return renderComponent(this.props.SuccessComponent || this.props.IdleComponent);
   }
 
-  private renderFailureComponent(): React.ReactNode | undefined {
+  private renderFailureComponent(): React.ReactNode {
     return renderComponent(this.props.FailureComponent || this.props.IdleComponent);
   }
 
