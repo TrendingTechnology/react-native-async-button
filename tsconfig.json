@@ -42,6 +42,7 @@
     "excludePrivate": true,
     "logger": "none",
     "exclude": "**/*.test.ts",
-    "media": "media"
+    "media": "media",
+    "ignoreCompilerErrors": true
   }
 }
