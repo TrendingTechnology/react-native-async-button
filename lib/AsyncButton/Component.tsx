@@ -228,30 +228,26 @@ function processingComponent(): Component {
  * ```
  */
 class AsyncButton extends React.PureComponent<IProps, IState> {
+  private mounted: boolean = false;
+
   /**
    * The default activity indicator to show
    */
   static ProcessingComponent: Component = ActivityIndicator;  // tslint:disable-line:variable-name
 
-  private updateState: <K extends keyof IState>(
-    state: ((prevState: Readonly<IState>, props: IProps) => (Pick<IState, K> | IState)) | (Pick<IState, K> | IState),
-    callback?: () => void
-  ) => void;
-
   constructor(props: IProps) {
     super(props);
-    this.state = {
-    };
-    this.updateState = this.setState;
+    this.state = {};
+  }
+
+  componentDidMount(): void {
+    this.mounted = true;
   }
 
   componentWillUnmount(): void {
     const { timer } = this.state;
     if (timer !== undefined || timer !== Infinity) { clearTimeout(timer as NodeJS.Timer); }
-    this.updateState = <K extends keyof IState>(
-      _state: ((prevState: Readonly<IState>, props: IProps) => (Pick<IState, K> | IState)) | (Pick<IState, K> | IState),
-      _callback?: () => void
-    ) => { };  // tslint:disable-line:no-empty
+    this.mounted = false;
   }
 
   render(): React.ReactNode {
@@ -354,7 +350,7 @@ class AsyncButton extends React.PureComponent<IProps, IState> {
     if (this.processing) {
       throw new Error('Cannot reset the button whilst the asynchronous operation is processing');
     }
-    this.updateState({ promise: undefined, error: undefined, timer: undefined });
+    this.updateState({ promise: undefined, error: undefined, timer: undefined }).catch(this.catcher);
   }
 
   private process(): void {
@@ -362,7 +358,7 @@ class AsyncButton extends React.PureComponent<IProps, IState> {
       if (this.props.onProcessing) { this.props.onProcessing(); }
     } finally {
       const promise = this.props.onPress().then(this.resolve, this.reject);
-      this.updateState({ promise });
+      this.updateState({ promise }).catch(this.catcher);
     }
   }
 
@@ -380,7 +376,7 @@ class AsyncButton extends React.PureComponent<IProps, IState> {
     try {
       if (this.props.onSuccess) { this.props.onSuccess(); }
     } finally {
-      this.updateState({ promise: undefined, timer: this.setTimeout(timeout) });
+      this.updateState({ promise: undefined, timer: this.setTimeout(timeout) }).catch(this.catcher);
     }
   }
 
@@ -389,7 +385,7 @@ class AsyncButton extends React.PureComponent<IProps, IState> {
     try {
       if (this.props.onFailure) { this.props.onFailure(); }
     } finally {
-      this.updateState({ promise: undefined, timer: this.setTimeout(timeout), error });
+      this.updateState({ promise: undefined, timer: this.setTimeout(timeout), error }).catch(this.catcher);
     }
   }
 
@@ -397,7 +393,7 @@ class AsyncButton extends React.PureComponent<IProps, IState> {
     try {
       if (this.props.onComplete) { this.props.onComplete(); }
     } finally {
-      this.updateState({ promise: undefined, error: undefined, timer: undefined });
+      this.updateState({ promise: undefined, error: undefined, timer: undefined }).catch(this.catcher);
     }
   }
 
@@ -443,6 +439,33 @@ class AsyncButton extends React.PureComponent<IProps, IState> {
 
   private renderFailureComponent(): React.ReactNode | undefined {
     return renderComponent(this.props.FailureComponent || this.props.IdleComponent);
+  }
+
+  /**
+   * Provides a way to update the state of the component. The current state of the component will
+   * be propagated forward. Required properties are not needed. Also prevents setting the state when
+   * the component has been unmounted so can be used in asynchronous callbacks safely.
+   * @returns a promise when the state *actually* updates
+   */
+  private async updateState(arg: ((_: IState) => Partial<IState>) | Partial<IState>): Promise<IState> {
+    if (this.mounted) {
+      return new Promise<IState>(resolve => {
+        super.setState(current => {
+          const partial = typeof arg === 'function' ? arg(current) : arg;
+          const state = { ...current, ...partial };
+          resolve(state);
+          return state;
+        });
+      });
+    } else {
+      return this.state;
+    }
+  }
+
+  private readonly catcher = (error: Error): void => {
+    if (this.mounted) {
+      super.setState({ error });
+    }
   }
 }
 
