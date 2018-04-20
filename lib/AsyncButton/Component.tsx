@@ -9,6 +9,14 @@ import styles from './styles';
 
 export type Callback = () => void;
 
+export interface IComponentState {
+  idle: boolean;
+  disabled: boolean;
+  processing: boolean;
+  success: boolean;
+  failure: boolean;
+}
+
 export interface IProps {
   /**
    * Invoked when the user taps the button
@@ -19,10 +27,12 @@ export interface IProps {
    * Determines if the button is enabled or not
    */
   disabled?: boolean;
+
   /**
    * The theme to use to style the button
    */
   theme?: ITheme;
+
   /**
    * The opacity to be applied to the disabled component, defaults to 0.6
    */
@@ -49,29 +59,29 @@ export interface IProps {
   /**
    * The component that will be rendered when the button is idle
    */
-  IdleComponent: Component;
+  IdleComponent: Component<IComponentState>;
 
   /**
    * The component that will be rendered when the button is disabled
    */
-  DisabledComponent?: Component;
+  DisabledComponent?: Component<IComponentState>;
 
   /**
    * Rendered when the asynchronous operation is in flight, defaults to `ActivityIndicator`
    */
-  ProcessingComponent?: Component;
+  ProcessingComponent?: Component<IComponentState>;
 
   /**
    * Rendered when the asynchronous operation has successfully completed. Will be shown for `successTimeout` before
    * resetting back to the idle state. Defaults to the `ProcessingComponent`
    */
-  SuccessComponent?: Component;
+  SuccessComponent?: Component<IComponentState>;
 
   /**
    * Rendered when the asynchronous operation has returned an failure. Will be shown for `failureTimeout` before
    * resetting back to the idle state. Defaults to the `ProcessingComponent`
    */
-  FailureComponent?: Component;
+  FailureComponent?: Component<IComponentState>;
 
   /**
    * Invoked when the user has requested the asynchronous operation to occur
@@ -102,7 +112,7 @@ export interface IState {
   timer?: Infinity | NodeJS.Timer;
 }
 
-function processingComponent(): Component {
+function processingComponent(): Component<IComponentState> {
   // tslint:disable-next-line:no-use-before-declare
   return AsyncButton.ProcessingComponent || ActivityIndicator;
 }
@@ -182,7 +192,7 @@ class AsyncButton extends React.PureComponent<IProps, IState> {
   /**
    * The default activity indicator to show
    */
-  static ProcessingComponent: Component = ActivityIndicator;  // tslint:disable-line:variable-name
+  static ProcessingComponent: Component<IComponentState> = ActivityIndicator;  // tslint:disable-line:variable-name
 
   constructor(props: IProps) {
     super(props);
@@ -373,7 +383,7 @@ class AsyncButton extends React.PureComponent<IProps, IState> {
   }
 
   private renderIdleComponent(): React.ReactNode {
-    const element = renderComponent(this.props.IdleComponent);
+    const element = renderComponent(this.props.IdleComponent, this);
     if (!element) {
       throw new Error(`An idle component must be provided`);
     }
@@ -381,19 +391,19 @@ class AsyncButton extends React.PureComponent<IProps, IState> {
   }
 
   private renderDisabledComponent(): React.ReactNode {
-    return renderComponent(this.props.DisabledComponent || this.props.IdleComponent);
+    return renderComponent(this.props.DisabledComponent || this.props.IdleComponent, this);
   }
 
   private renderProcessingComponent(): React.ReactNode {
-    return renderComponent(this.props.ProcessingComponent || processingComponent());
+    return renderComponent(this.props.ProcessingComponent || processingComponent(), this);
   }
 
   private renderSuccessComponent(): React.ReactNode {
-    return renderComponent(this.props.SuccessComponent || this.props.IdleComponent);
+    return renderComponent(this.props.SuccessComponent || this.props.IdleComponent, this);
   }
 
   private renderFailureComponent(): React.ReactNode {
-    return renderComponent(this.props.FailureComponent || this.props.IdleComponent);
+    return renderComponent(this.props.FailureComponent || this.props.IdleComponent, this);
   }
 
   /**
