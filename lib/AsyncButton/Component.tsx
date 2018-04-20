@@ -1,11 +1,11 @@
-import { ITheme } from '@ef-carbon/react-native-style';
-import renderComponent, { Component } from '@ef-carbon/react-render-component';
 import * as React from 'react';
 import { ActivityIndicator, StyleProp, TouchableHighlight, View, ViewStyle } from 'react-native';
 
-import styles from './styles';
+import { MillisecondsAccepted as Milliseconds, millisecondsConvert } from '@ef-carbon/primitive';
+import { ITheme } from '@ef-carbon/react-native-style';
+import renderComponent, { Component } from '@ef-carbon/react-render-component';
 
-export type Milliseconds = number;
+import styles from './styles';
 
 export type Callback = () => void;
 
@@ -314,10 +314,16 @@ class AsyncButton extends React.PureComponent<IProps, IState> {
   private setTimeout(duration?: Milliseconds): NodeJS.Timer | Infinity | undefined {
     if (duration === undefined) {
       this.complete();
-    } else if (duration !== Infinity) {
-      return setTimeout(this.complete, duration || 0);
+      return duration;
     }
-    return duration;
+
+    const converted = millisecondsConvert(duration);
+
+    if (converted !== Infinity) {
+      return setTimeout(this.complete, converted || 0);
+    }
+
+    return converted;
   }
 
   private readonly resolve = (): void => {
