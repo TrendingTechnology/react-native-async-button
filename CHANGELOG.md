@@ -1,3 +1,11 @@
+<a name="3.1.0"></a>
+# [3.1.0](https://github.com/ef-carbon/react-native-async-button/compare/v3.0.1...v3.1.0) (2018-04-20)
+
+
+### Features
+
+* **component:** support for disabled component ([64d6bb1](https://github.com/ef-carbon/react-native-async-button/commit/64d6bb1))
+
 <a name="3.0.1"></a>
 ## [3.0.1](https://github.com/ef-carbon/react-native-async-button/compare/v3.0.0...v3.0.1) (2018-03-26)
 
