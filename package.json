@@ -52,7 +52,7 @@
   "dependencies": {
     "@ef-carbon/primitive": "^4.0.2",
     "@ef-carbon/react-native-style": "^5.0.2",
-    "@ef-carbon/react-render-component": "^1.2.0"
+    "@ef-carbon/react-render-component": "^1.3.1"
   },
   "peerDependencies": {
     "react": "*",
@@ -63,10 +63,10 @@
     "@commitlint/config-conventional": "^6.1.3",
     "@ef-carbon/tspm": "^2.2.1",
     "@semantic-release/changelog": "^2.0.1",
-    "@semantic-release/git": "^4.0.1",
-    "@types/jest": "^22.2.2",
-    "@types/react": "^16.3.5",
-    "@types/react-native": "^0.55.0",
+    "@semantic-release/git": "^4.0.2",
+    "@types/jest": "^22.2.3",
+    "@types/react": "^16.3.12",
+    "@types/react-native": "^0.55.4",
     "@types/react-test-renderer": "^16.0.1",
     "acorn-jsx": "^4.1.1",
     "babel-core": "^6.0.0",
@@ -79,21 +79,21 @@
     "eslint": "^4.19.1",
     "estraverse": "*",
     "estraverse-fb": "^1.3.2",
-    "husky": "^0.15.0-rc.13",
+    "husky": "^1.0.0-rc.1",
     "jest": "^22.4.3",
     "jest-junit-reporter": "^1.1.0",
     "opn-cli": "^3.1.0",
-    "react": "^16.3.1",
-    "react-native": "^0.55.0",
-    "react-test-renderer": "^16.3.1",
+    "react": "^16.3.2",
+    "react-native": "^0.55.3",
+    "react-test-renderer": "^16.3.2",
     "replace-in-file": "^3.4.0",
-    "semantic-release": "^15.1.5",
-    "ts-jest": "^22.4.2",
+    "semantic-release": "^15.1.7",
+    "ts-jest": "^22.4.4",
     "tslint": "^5.9.1",
     "typedoc": "^0.11.1",
-    "typescript": "^2.8.1",
-    "typescript-formatter": "^7.1.0",
-    "yaml-lint": "^1.2.2"
+    "typescript": "^2.8.3",
+    "typescript-formatter": "^7.2.0",
+    "yaml-lint": "^1.2.3"
   },
   "config": {
     "commitizen": {
