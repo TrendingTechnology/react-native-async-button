@@ -1,5 +1,3 @@
-// tslint:disable: no-any
-
 import { ITheme as IRNSTheme } from '@ef-carbon/react-native-style';
 import renderComponent, { Component } from '@ef-carbon/react-render-component';
 import * as React from 'react';
@@ -256,7 +254,7 @@ class AsyncButton extends React.PureComponent<IProps, IState> {
     ) => { };  // tslint:disable-line:no-empty
   }
 
-  render(): React.ReactElement<any> {
+  render(): React.ReactNode {
     const element = this.renderElement();
     const { theme, disabledOpacity } = this.props;
     const defaultOpacity = styles.disabled;
@@ -409,7 +407,7 @@ class AsyncButton extends React.PureComponent<IProps, IState> {
     }
   }
 
-  private renderElement(): React.ReactElement<any> | undefined {
+  private renderElement(): React.ReactNode | undefined {
     if (this.processing) {
       return this.renderProcessingComponent();
     } else if (this.success) {
@@ -423,7 +421,7 @@ class AsyncButton extends React.PureComponent<IProps, IState> {
     }
   }
 
-  private renderIdleComponent(): React.ReactElement<any> {
+  private renderIdleComponent(): React.ReactNode {
     const element = renderComponent(this.props.IdleComponent);
     if (!element) {
       throw new Error(`An idle component must be provided`);
@@ -431,19 +429,19 @@ class AsyncButton extends React.PureComponent<IProps, IState> {
     return element;
   }
 
-  private renderDisabledComponent(): React.ReactElement<any> | undefined {
+  private renderDisabledComponent(): React.ReactNode | undefined {
     return renderComponent(this.props.DisabledComponent || this.props.IdleComponent);
   }
 
-  private renderProcessingComponent(): React.ReactElement<any> | undefined {
+  private renderProcessingComponent(): React.ReactNode | undefined {
     return renderComponent(this.props.ProcessingComponent || processingComponent());
   }
 
-  private renderSuccessComponent(): React.ReactElement<any> | undefined {
+  private renderSuccessComponent(): React.ReactNode | undefined {
     return renderComponent(this.props.SuccessComponent || this.props.IdleComponent);
   }
 
-  private renderFailureComponent(): React.ReactElement<any> | undefined {
+  private renderFailureComponent(): React.ReactNode | undefined {
     return renderComponent(this.props.FailureComponent || this.props.IdleComponent);
   }
 }
