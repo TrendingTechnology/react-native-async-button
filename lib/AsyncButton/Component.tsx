@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ActivityIndicator, StyleProp, TouchableHighlight, View, ViewStyle } from 'react-native';
+import { ActivityIndicator, StyleProp, TouchableOpacity, View, ViewStyle } from 'react-native';
 
 import { MillisecondsAccepted as Milliseconds, millisecondsConvert } from '@ef-carbon/primitive';
 import { ITheme } from '@ef-carbon/react-native-style';
@@ -213,21 +213,19 @@ class AsyncButton extends React.PureComponent<IProps, IState> {
     const element = this.renderElement();
 
     const { theme, disabledOpacity: prop } = this.props;
-    const opacity = !this.disabled ? undefined :
+    const disabled = !this.disabled ? undefined :
       theme ? theme.opacity.cloudy :
         { opacity: prop !== undefined ? prop : 0.6 };
 
-    return (this.processing || this.disabled) ?
-      (<View style={[styles.container, this.props.style, opacity]}>{element}</View>) :
-      (
-        <TouchableHighlight
-          style={[styles.container, this.props.style]}
-          underlayColor='transparent'
-          onPress={this.handlePress}
-        >
-          {element}
-        </TouchableHighlight>
-      );
+    const view = (<View style={[styles.container, this.props.style, disabled]}>{element}</View>);
+
+    if (this.processing || this.disabled) {
+      return view;
+    }
+
+    const opacity = theme ? theme.constants.opacity.translucent : undefined;
+
+    return (<TouchableOpacity activeOpacity={opacity} onPress={this.handlePress}>{view}</TouchableOpacity>);
   }
 
   /**
