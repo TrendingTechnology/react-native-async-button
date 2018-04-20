@@ -469,9 +469,9 @@ class AsyncButton extends React.PureComponent<IProps, IState> {
   }
 }
 
-export interface IAsyncButtonStatic extends React.ComponentClass<IProps> { }
+export interface IStatic extends React.ComponentClass<IProps> { }
 
-const component: IAsyncButtonStatic = AsyncButton;
+const component: IStatic = AsyncButton;
 
 export { component as Component };
 

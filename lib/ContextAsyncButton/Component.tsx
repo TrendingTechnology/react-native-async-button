@@ -117,9 +117,9 @@ export class ContextAsyncButton<Context> extends React.PureComponent<IProps<Cont
   }
 }
 
-export interface IContextAsyncButtonStatic<Context> extends React.ComponentClass<IProps<Context>> { }
+export interface IStatic<Context> extends React.ComponentClass<IProps<Context>> { }
 
-const component: IContextAsyncButtonStatic<{}> = ContextAsyncButton;
+const component: IStatic<{}> = ContextAsyncButton;
 
 export { component as Component };
 
