@@ -6,6 +6,7 @@ exports[`AsyncButton failing asynchronous operation should render 1`] = `
   accessibilityLabel={undefined}
   accessibilityTraits={undefined}
   accessible={true}
+  collapsable={undefined}
   hasTVPreferredFocus={undefined}
   hitSlop={undefined}
   isTVSelectable={true}
@@ -18,27 +19,35 @@ exports[`AsyncButton failing asynchronous operation should render 1`] = `
   onResponderTerminationRequest={[Function]}
   onStartShouldSetResponder={[Function]}
   style={
-    Array [
-      Object {
-        "alignItems": "center",
-        "justifyContent": "center",
-        "minHeight": 44,
-        "minWidth": 44,
-      },
-      undefined,
-    ]
+    Object {
+      "opacity": 1,
+    }
   }
   testID={undefined}
   tvParallaxProperties={undefined}
 >
-  <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
-    style={null}
+  <View
+    style={
+      Array [
+        Object {
+          "alignItems": "center",
+          "justifyContent": "center",
+          "minHeight": 44,
+          "minWidth": 44,
+        },
+        undefined,
+        undefined,
+      ]
+    }
   >
-    Hey, there!
-  </Text>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+    >
+      Hey, there!
+    </Text>
+  </View>
 </View>
 `;
 
@@ -48,6 +57,7 @@ exports[`AsyncButton successful asynchronous operation should render 1`] = `
   accessibilityLabel={undefined}
   accessibilityTraits={undefined}
   accessible={true}
+  collapsable={undefined}
   hasTVPreferredFocus={undefined}
   hitSlop={undefined}
   isTVSelectable={true}
@@ -60,26 +70,34 @@ exports[`AsyncButton successful asynchronous operation should render 1`] = `
   onResponderTerminationRequest={[Function]}
   onStartShouldSetResponder={[Function]}
   style={
-    Array [
-      Object {
-        "alignItems": "center",
-        "justifyContent": "center",
-        "minHeight": 44,
-        "minWidth": 44,
-      },
-      undefined,
-    ]
+    Object {
+      "opacity": 1,
+    }
   }
   testID={undefined}
   tvParallaxProperties={undefined}
 >
-  <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
-    style={null}
+  <View
+    style={
+      Array [
+        Object {
+          "alignItems": "center",
+          "justifyContent": "center",
+          "minHeight": 44,
+          "minWidth": 44,
+        },
+        undefined,
+        undefined,
+      ]
+    }
   >
-    Hey, there!
-  </Text>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+    >
+      Hey, there!
+    </Text>
+  </View>
 </View>
 `;
