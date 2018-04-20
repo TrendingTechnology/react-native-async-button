@@ -211,16 +211,14 @@ class AsyncButton extends React.PureComponent<IProps, IState> {
 
   render(): React.ReactNode {
     const element = this.renderElement();
-    const { theme, disabledOpacity } = this.props;
-    const defaultOpacity = styles.disabled;
-    const themeOpacity = theme ? theme.opacity.opaque : undefined;
-    const propOpacity = disabledOpacity ? { opacity: disabledOpacity } : undefined;
+
+    const { theme, disabledOpacity: prop } = this.props;
+    const opacity = !this.disabled ? undefined :
+      theme ? theme.opacity.cloudy :
+        { opacity: prop !== undefined ? prop : 0.6 };
+
     return (this.processing || this.disabled) ?
-      (<View style={[
-        styles.container,
-        this.props.style,
-        this.disabled ? [defaultOpacity, themeOpacity, propOpacity] : undefined
-      ]}>{element}</View>) :
+      (<View style={[styles.container, this.props.style, opacity]}>{element}</View>) :
       (
         <TouchableHighlight
           style={[styles.container, this.props.style]}
