@@ -10,9 +10,8 @@
     "node": ">=8.3"
   },
   "scripts": {
-    "prepare": "yarn -s replace:snapshots && yarn -s replace:mocks",
-    "replace:snapshots": "replace-in-file __snapshots__ fixtures 'node_modules/jest*/**/*.js'",
-    "replace:mocks": "replace-in-file __mocks__ mocks 'node_modules/jest*/**/*.js'",
+    "prepare": "yarn -s replace:snapshots",
+    "replace:snapshots": "replace-in-file __snapshots__ fixtures 'node_modules/jest*/**/*.js' --verbose",
     "prepublishOnly": "yarn -s build",
     "commit": "git-cz",
     "distclean": "git clean -Xfd",
