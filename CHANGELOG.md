@@ -1,3 +1,22 @@
+<a name="4.0.0"></a>
+# [4.0.0](https://github.com/ef-carbon/react-native-async-button/compare/v3.1.0...v4.0.0) (2018-04-21)
+
+
+### Code Refactoring
+
+* remove sub-prop interfaces ([83ed258](https://github.com/ef-carbon/react-native-async-button/commit/83ed258))
+
+
+### Features
+
+* **async-button:** component state available to render callbacks ([917db06](https://github.com/ef-carbon/react-native-async-button/commit/917db06))
+* **async-button:** respond to taps with `TouchableOpacity` ([1874d57](https://github.com/ef-carbon/react-native-async-button/commit/1874d57))
+
+
+### BREAKING CHANGES
+
+* sub-property interfaces are no-longer exported, use the new TypeScript mapping types and older `Pick`
+
 <a name="3.1.0"></a>
 # [3.1.0](https://github.com/ef-carbon/react-native-async-button/compare/v3.0.1...v3.1.0) (2018-04-20)
 
