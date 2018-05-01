@@ -317,6 +317,10 @@ class AsyncButton extends React.PureComponent<IProps, IState> {
     }
   }
 
+  private processingComponent(): Component<IComponentState> {
+    return this.props.ProcessingComponent || processingComponent();
+  }
+
   private setTimeout(duration?: Milliseconds): NodeJS.Timer | Infinity | undefined {
     if (duration === undefined) {
       this.complete();
@@ -391,17 +395,15 @@ class AsyncButton extends React.PureComponent<IProps, IState> {
   }
 
   private renderProcessingComponent(): React.ReactNode {
-    return renderComponent(this.props.ProcessingComponent || processingComponent(), this);
+    return renderComponent(this.processingComponent(), this);
   }
 
   private renderSuccessComponent(): React.ReactNode {
-    // tslint:disable-next-line:max-line-length
-    return renderComponent(this.props.SuccessComponent || this.props.ProcessingComponent || processingComponent(), this);
+    return renderComponent(this.props.SuccessComponent || this.processingComponent(), this);
   }
 
   private renderFailureComponent(): React.ReactNode {
-    // tslint:disable-next-line:max-line-length
-    return renderComponent(this.props.FailureComponent || this.props.ProcessingComponent || processingComponent(), this);
+    return renderComponent(this.props.FailureComponent || this.processingComponent(), this);
   }
 
   /**
