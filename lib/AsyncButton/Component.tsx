@@ -395,11 +395,13 @@ class AsyncButton extends React.PureComponent<IProps, IState> {
   }
 
   private renderSuccessComponent(): React.ReactNode {
-    return renderComponent(this.props.SuccessComponent || this.props.IdleComponent, this);
+    // tslint:disable-next-line:max-line-length
+    return renderComponent(this.props.SuccessComponent || this.props.ProcessingComponent || processingComponent(), this);
   }
 
   private renderFailureComponent(): React.ReactNode {
-    return renderComponent(this.props.FailureComponent || this.props.IdleComponent, this);
+    // tslint:disable-next-line:max-line-length
+    return renderComponent(this.props.FailureComponent || this.props.ProcessingComponent || processingComponent(), this);
   }
 
   /**
