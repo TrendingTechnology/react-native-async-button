@@ -1,3 +1,11 @@
+<a name="4.0.1"></a>
+## [4.0.1](https://github.com/ef-carbon/react-native-async-button/compare/v4.0.0...v4.0.1) (2018-05-01)
+
+
+### Bug Fixes
+
+* fix component flows for success and failure ([2c52017](https://github.com/ef-carbon/react-native-async-button/commit/2c52017))
+
 <a name="4.0.0"></a>
 # [4.0.0](https://github.com/ef-carbon/react-native-async-button/compare/v3.1.0...v4.0.0) (2018-04-21)
 
