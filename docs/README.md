@@ -1,4 +1,4 @@
-<img style="float: right; border: 1px solid grey; box-shadow: 0 0 4px rgba(0, 0, 0, 0.25); margin: 1em 0 1em 1em" src="media/demo.gif" />
+<img style="float: right; border: 1px solid grey; box-shadow: 0 0 4px rgba(0, 0, 0, 0.25); margin: 1em 0 1em 1em; width: 35%; max-width: 20em" src="media/demo.gif" />
 
 The asynchronous button can update the rendering state dependent on an asynchronous operation. It provides four states:
 
