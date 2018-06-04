@@ -1,4 +1,3 @@
-import { } from 'jest';
 import * as React from 'react';
 import { Text } from 'react-native';
 

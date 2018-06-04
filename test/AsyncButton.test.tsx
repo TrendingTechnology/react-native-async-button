@@ -1,5 +1,3 @@
-import { } from 'jest';
-
 import AsyncButton from '@lib';
 import * as React from 'react';
 import { Text } from 'react-native';
