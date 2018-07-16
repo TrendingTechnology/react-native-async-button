@@ -23,9 +23,7 @@
     "newLine": "LF",
     "jsx": "react-native",
     "lib": [
-      "es2017",
-      "dom",
-      "esnext.asynciterable"
+      "es2017"
     ]
   },
   "include": [
