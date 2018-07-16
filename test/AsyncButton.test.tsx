@@ -1,8 +1,9 @@
-import AsyncButton from '@lib';
 import * as React from 'react';
 import { Text } from 'react-native';
 
 import * as renderer from 'react-test-renderer';
+
+import AsyncButton from '@lib';
 
 async function success(): Promise<void> {
   await new Promise<void>(resolve => setTimeout(resolve, 0));

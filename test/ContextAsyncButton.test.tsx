@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { Text } from 'react-native';
 
-import { ContextAsyncButton } from '@lib';
-
 import * as renderer from 'react-test-renderer';
+
+import { ContextAsyncButton } from '@lib';
 
 interface IContext {
   data: number;

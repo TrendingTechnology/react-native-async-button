@@ -30,11 +30,7 @@ exports[`AsyncButton failing asynchronous operation should render 1`] = `
       ]
     }
   >
-    <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
-    >
+    <Text>
       Hey, there!
     </Text>
   </View>
@@ -71,11 +67,7 @@ exports[`AsyncButton successful asynchronous operation should render 1`] = `
       ]
     }
   >
-    <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
-    >
+    <Text>
       Hey, there!
     </Text>
   </View>
