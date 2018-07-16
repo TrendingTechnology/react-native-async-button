@@ -48,18 +48,21 @@
     "test": "test",
     "doc": "docs"
   },
-  "dependencies": {
-    "@ef-carbon/primitive": "^4.9.3",
-    "@ef-carbon/react-native-style": "^6.2.2",
-    "@ef-carbon/react-render-component": "^1.6.0"
-  },
+  "dependencies": {},
   "peerDependencies": {
+    "@ef-carbon/primitive": "^4",
+    "@ef-carbon/react-native-style": "^6",
+    "@ef-carbon/react-render-component": "^1",
     "react": "*",
     "react-native": "*"
   },
   "devDependencies": {
+    "@babel/core": "^7.0.0-beta.53",
     "@commitlint/cli": "^7.0.0",
     "@commitlint/config-conventional": "^7.0.1",
+    "@ef-carbon/primitive": "^4.9.3",
+    "@ef-carbon/react-native-style": "^6.2.2",
+    "@ef-carbon/react-render-component": "^1.6.0",
     "@ef-carbon/tspm": "^2.2.3",
     "@ef-carbon/url": "^2.0.3",
     "@semantic-release/changelog": "^2.1.1",
