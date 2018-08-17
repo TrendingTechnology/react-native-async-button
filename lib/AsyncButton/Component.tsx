@@ -9,7 +9,7 @@ import styles from './styles';
 
 export type Callback = () => void;
 
-export interface IComponentState {
+export interface IAsyncButtonComponentState {
   idle: boolean;
   disabled: boolean;
   processing: boolean;
@@ -17,7 +17,7 @@ export interface IComponentState {
   failure: boolean;
 }
 
-export interface IProps {
+export interface IAsyncButtonProps {
   /**
    * Invoked when the user taps the button
    */
@@ -59,29 +59,29 @@ export interface IProps {
   /**
    * The component that will be rendered when the button is idle
    */
-  IdleComponent: Component<IComponentState>;
+  IdleComponent: Component<IAsyncButtonComponentState>;
 
   /**
    * The component that will be rendered when the button is disabled
    */
-  DisabledComponent?: Component<IComponentState>;
+  DisabledComponent?: Component<IAsyncButtonComponentState>;
 
   /**
    * Rendered when the asynchronous operation is in flight, defaults to `ActivityIndicator`
    */
-  ProcessingComponent?: Component<IComponentState>;
+  ProcessingComponent?: Component<IAsyncButtonComponentState>;
 
   /**
    * Rendered when the asynchronous operation has successfully completed. Will be shown for `successTimeout` before
    * resetting back to the idle state. Defaults to the `ProcessingComponent`
    */
-  SuccessComponent?: Component<IComponentState>;
+  SuccessComponent?: Component<IAsyncButtonComponentState>;
 
   /**
    * Rendered when the asynchronous operation has returned an failure. Will be shown for `failureTimeout` before
    * resetting back to the idle state. Defaults to the `ProcessingComponent`
    */
-  FailureComponent?: Component<IComponentState>;
+  FailureComponent?: Component<IAsyncButtonComponentState>;
 
   /**
    * Invoked when the user has requested the asynchronous operation to occur
@@ -104,15 +104,15 @@ export interface IProps {
   onComplete?: Callback;
 }
 
-export type Infinity = number;
+export type AsyncButtonInfinity = number;
 
-export interface IState {
+export interface IAsyncButtonState {
   error?: Error;
-  promise?: Promise<void>;
-  timer?: Infinity | NodeJS.Timer;
+  promise?: ICancellablePromise<void>;
+  timer?: AsyncButtonInfinity | NodeJS.Timer;
 }
 
-function processingComponent(): Component<IComponentState> {
+function processingComponent(): Component<IAsyncButtonComponentState> {
   // tslint:disable-next-line:no-use-before-declare
   return AsyncButton.ProcessingComponent || ActivityIndicator;
 }
@@ -186,15 +186,14 @@ function processingComponent(): Component<IComponentState> {
  * </View>
  * ```
  */
-class AsyncButton extends React.PureComponent<IProps, IState> {
-  private mounted: boolean = false;
-
+export class AsyncButton extends React.PureComponent<IAsyncButtonProps, IAsyncButtonState> {
   /**
    * The default activity indicator to show
    */
-  static ProcessingComponent: Component<IComponentState> = ActivityIndicator;  // tslint:disable-line:variable-name
+  // tslint:disable-next-line:variable-name
+  static ProcessingComponent: Component<IAsyncButtonComponentState> = ActivityIndicator;
 
-  constructor(props: IProps) {
+  constructor(props: IAsyncButtonProps) {
     super(props);
     this.state = {};
   }
@@ -317,11 +316,11 @@ class AsyncButton extends React.PureComponent<IProps, IState> {
     }
   }
 
-  private processingComponent(): Component<IComponentState> {
+  private processingComponent(): Component<IAsyncButtonComponentState> {
     return this.props.ProcessingComponent || processingComponent();
   }
 
-  private setTimeout(duration?: Milliseconds): NodeJS.Timer | Infinity | undefined {
+  private setTimeout(duration?: Milliseconds): NodeJS.Timer | AsyncButtonInfinity | undefined {
     if (duration === undefined) {
       this.complete();
       return duration;
@@ -434,10 +433,18 @@ class AsyncButton extends React.PureComponent<IProps, IState> {
   }
 }
 
-export interface IStatic extends React.ComponentClass<IProps> { }
+export interface IAsyncButtonStatic extends React.ComponentClass<IAsyncButtonProps> { }
 
-const component: IStatic = AsyncButton;
+const component: IAsyncButtonStatic = AsyncButton;
 
-export { component as Component };
+export {
+  component as Component,
+  component as AsyncButtonComponent,
+  IAsyncButtonStatic as IStatic,
+  IAsyncButtonProps as IProps,
+  IAsyncButtonState as IState,
+  AsyncButtonInfinity as Infinity,
+  IAsyncButtonComponentState as IComponentState
+};
 
 export default AsyncButton;

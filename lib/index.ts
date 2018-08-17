@@ -1,16 +1,26 @@
-import ContextAsyncButton from '@lib/ContextAsyncButton';
 export {
-  IProps as IContextAsyncButtonProps,
-  IStatic as IContextAsyncButtonStatic
+  ContextAsyncButton,
+  ContextAsyncButtonComponent,
+  IContextAsyncButtonProps,
+  IContextAsyncButtonStatic
 } from '@lib/ContextAsyncButton';
-export { ContextAsyncButton };
+
+export {
+  AsyncButton,
+  AsyncButtonComponent,
+  IAsyncButtonProps,
+  IAsyncButtonStatic,
+  IAsyncButtonComponentState,
+  AsyncButtonInfinity
+} from '@lib/AsyncButton';
+
+export {
+  AsyncButtonComponent as Component,
+  IAsyncButtonStatic as IStatic,
+  IAsyncButtonProps as IProps,
+  AsyncButtonInfinity as Infinity,
+  IAsyncButtonComponentState as IComponentState
+} from '@lib/AsyncButton';
 
 import AsyncButton from '@lib/AsyncButton';
-export {
-  IProps as IAsyncButtonProps,
-  IStatic as IAsyncButtonStatic
-} from '@lib/ContextAsyncButton';
-export { AsyncButton };
-
-export * from '@lib/AsyncButton';
 export default AsyncButton;

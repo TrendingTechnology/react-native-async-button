@@ -1,10 +1,9 @@
-// tslint:disable: no-any
-
 import * as React from 'react';
 
 import AsyncButton, { IProps as IAsyncButtonProps } from '@lib/AsyncButton';
 
-export interface IProps<Context> extends Pick<IAsyncButtonProps, Exclude<keyof IAsyncButtonProps, 'onPress'>> {
+export interface IContextAsyncButtonProps<Context>
+  extends Pick<IAsyncButtonProps, Exclude<keyof IAsyncButtonProps, 'onPress'>> {
   /**
    * The value that will get passed to the `onPress` handler
    */
@@ -16,12 +15,10 @@ export interface IProps<Context> extends Pick<IAsyncButtonProps, Exclude<keyof I
   onPress(context: Context): Promise<void>;
 }
 
-export interface IState { }
-
 /**
  * The context button can hold a context that will be passed to the `onPress` callback
  */
-export class ContextAsyncButton<Context> extends React.PureComponent<IProps<Context>, IState> {
+export class ContextAsyncButton<Context> extends React.PureComponent<IContextAsyncButtonProps<Context>> {
   private buttonComponent?: AsyncButton = undefined;
   /**
    * The button is idle and awaiting user input to state the asyncronous operation
@@ -97,8 +94,7 @@ export class ContextAsyncButton<Context> extends React.PureComponent<IProps<Cont
     }
   }
 
-  // tslint:disable-next-line:no-empty-interface
-  render(): React.ReactElement<any> {
+  render(): React.ReactNode {
     const { context, onPress, ...props } = this.props;
     return (<AsyncButton ref={this.refButton} onPress={this.handlePress} {...props} />);
   }
@@ -112,10 +108,17 @@ export class ContextAsyncButton<Context> extends React.PureComponent<IProps<Cont
   }
 }
 
-export interface IStatic<Context> extends React.ComponentClass<IProps<Context>> { }
+// tslint:disable-next-line:no-any
+export interface IContextAsyncButtonStatic<Context = any>
+  extends React.ComponentClass<IContextAsyncButtonProps<Context>> { }
 
-const component: IStatic<{}> = ContextAsyncButton;
+const component: IContextAsyncButtonStatic = ContextAsyncButton;
 
-export { component as Component };
+export {
+  component as Component,
+  component as ContextAsyncButtonComponent,
+  IContextAsyncButtonStatic as IStatic,
+  IContextAsyncButtonProps as IProps
+};
 
 export default ContextAsyncButton;
