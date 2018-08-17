@@ -1,3 +1,11 @@
+## [4.0.3](https://github.com/ef-carbon/react-native-async-button/compare/v4.0.2...v4.0.3) (2018-08-17)
+
+
+### Bug Fixes
+
+* update interface names to better relect what they represent ([d2d4835](https://github.com/ef-carbon/react-native-async-button/commit/d2d4835))
+* **build:** downgrade `[@types](https://github.com/types)/react` ([eaf2f4f](https://github.com/ef-carbon/react-native-async-button/commit/eaf2f4f))
+
 ## [4.0.2](https://github.com/ef-carbon/react-native-async-button/compare/v4.0.1...v4.0.2) (2018-07-16)
 
 
