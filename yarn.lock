@@ -710,6 +710,10 @@
   version "4.9.3"
   resolved "https://registry.yarnpkg.com/@ef-carbon/primitive/-/primitive-4.9.3.tgz#621d79ada05092cfe1706e77c0348ebd46c61576"
 
+"@ef-carbon/promise@^2.1.1":
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/@ef-carbon/promise/-/promise-2.1.1.tgz#b1bb3370ab88d63927ffcb001d53313e438efb9e"
+
 "@ef-carbon/react-native-style@^6.2.2":
   version "6.2.2"
   resolved "https://registry.yarnpkg.com/@ef-carbon/react-native-style/-/react-native-style-6.2.2.tgz#bb06673bbd4f8a73c044ca9419232a4e62dbbb30"
