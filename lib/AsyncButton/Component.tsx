@@ -2,7 +2,7 @@ import * as React from 'react';
 import { ActivityIndicator, StyleProp, TouchableOpacity, View, ViewStyle } from 'react-native';
 
 import { MillisecondsAccepted as Milliseconds, millisecondsConvert } from '@ef-carbon/primitive';
-import { CancellablePromise, CancelledPromiseError, ICancellablePromise } from '@ef-carbon/promise';
+import { CancellablePromise, ICancellablePromise } from '@ef-carbon/promise';
 import { ITheme } from '@ef-carbon/react-native-style';
 import renderComponent, { Component } from '@ef-carbon/react-render-component';
 
@@ -319,7 +319,7 @@ export class AsyncButton extends React.PureComponent<IAsyncButtonProps, IAsyncBu
       promise
         .then(this.resolve)
         .catch(error => {
-          if (!(error instanceof CancelledPromiseError)) {
+          if (!promise.cancelled) {
             this.reject(error);
           }
         });
