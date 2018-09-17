@@ -1,3 +1,10 @@
+## [4.0.4](https://github.com/ef-carbon/react-native-async-button/compare/v4.0.3...v4.0.4) (2018-09-17)
+
+
+### Bug Fixes
+
+* correctly detect if promise was cancelled ([10881f3](https://github.com/ef-carbon/react-native-async-button/commit/10881f3))
+
 ## [4.0.3](https://github.com/ef-carbon/react-native-async-button/compare/v4.0.2...v4.0.3) (2018-08-17)
 
 
